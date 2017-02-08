@@ -26,7 +26,7 @@ import {AuthenticationService} from "../../service/http/authentication.service";
     ])
   ]
 })
-@Directive({selector: '[ContenteditableModel]'})
+//@Directive({selector: '[ContenteditableModel]'})
 export class TextComponent {
   errorMessage: any;
   target: any;
