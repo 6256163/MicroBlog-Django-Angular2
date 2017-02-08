@@ -1,0 +1,65 @@
+<div id="chat" #chat
+     class="box" style="overflow:hidden;width: 300px; display:inline-block;">
+  <div class="modal-content">
+    <div class="modal-header">
+
+      <div class="modal-title" style="overflow: hidden;">
+        <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left"></div>
+        <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username1</span></div>
+        <a style="float: right; line-height: 30px">
+          <md-icon *ngIf="chatDefaut" (click)="showChatTo()">add</md-icon>
+          <md-icon *ngIf="chatTo" (click)="hideChatTo()">remove</md-icon>
+        </a>
+
+      </div>
+    </div>
+    <div *ngIf="chatDefaut">
+      <div id="chatIcon" class="" style="text-align: center;">
+        <div style="padding: 30px 0 0 0;font-size: larger">
+          <md-icon style="width: 60px;height: 60px; font-size: 60px">chat</md-icon>
+          <p>
+            Talk to somebody
+          </p>
+        </div>
+      </div>
+
+      <div style="horiz-align: center">
+        <div style="overflow:hidden; width: 180px;margin: 0 auto; padding-bottom: 30px">
+          <img src="#" style="width: 35px; height: 35px; float: left; margin: 5px">
+          <img src="#" style="width: 35px; height: 35px; float: left; margin: 5px">
+          <img src="#" style="width: 35px; height: 35px; float: left; margin: 5px">
+          <img src="#" style="width: 35px; height: 35px; float: left; margin: 5px">
+        </div>
+
+
+      </div>
+    </div>
+
+    <div *ngIf="chatTo" style="">
+      <div style="overflow: hidden;padding: 10px 20px 10px 20px">
+        <span>To:&nbsp;</span>
+        <input style="background-color:transparent;color: white">
+      </div>
+      <div>
+        <div style="text-align: center;border-top: 1px solid gray; background-color: gray">
+          FAVORITES
+        </div>
+        <div *ngFor="let i of [1,2,3,4]" style="padding:10px; border-top: 1px solid gray;overflow: hidden" >
+          <div style="float: left;">
+            <img src="#" style="width: 37px;height: 37px;" >
+          </div>
+
+          <div style="float: left;">
+            <div style="margin-left: 10px; font-size: 15px">
+              <p style="margin: 0">username</p>
+              <p style="margin: 0">signature</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

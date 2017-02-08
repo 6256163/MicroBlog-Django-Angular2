@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+</head>
+<script>
+
+</script>
+<body>
+
+<div id="chat" #account
+     class="box" style="overflow:hidden;width: 200px; display:inline-block;">
+  <div class="panel panel-default">
+    <div class="panel-heading" style="overflow: hidden">
+      <span style="float: left">{{authenticationService.user.username}}</span>
+      <a style="float: right" (click)="logout()">Logout</a>
+    </div>
+    <ul style="padding: 0;margin: 0">
+      <li class="panel-body" style="list-style-type: none;padding: 5px 15px;border-bottom: 1px solid gray">
+        <md-icon style="font-size: 15px">favorite</md-icon>
+        <a routerLink="/likes" routerLinkActive="active">
+          <span style="">likes</span>
+        </a>
+          <span style="float: right">99</span>
+
+      </li>
+      <li class="panel-body" style="list-style-type: none;padding: 5px 15px;border-bottom: 1px solid gray">
+        <md-icon style="font-size: 15px">group</md-icon>
+        <a routerLink="/follow" routerLinkActive="active">
+          <span style="">Follow</span>
+        </a>
+        <span style="float: right">99</span>
+
+      </li>
+      <li class="panel-body" style="list-style-type: none;padding: 5px 15px;border-bottom: 1px solid gray">
+        <md-icon style="font-size: 15px">settings</md-icon>
+        <a href="#">
+          <span style="">Setting</span>
+        </a>
+
+      </li>
+      <li class="panel-body" style="list-style-type: none;padding: 5px 15px;border-bottom: 1px solid gray">
+        <md-icon style="font-size: 15px">help</md-icon>
+        <a href="#">
+          <span style="">Help</span>
+        </a>
+
+      </li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
+

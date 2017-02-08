@@ -1,0 +1,557 @@
+
+<div id="explore" style="overflow: hidden;margin: 0 auto" (window:resize)="waterfall()">
+  <!--
+<div #main id="main" style="float: left ;overflow: hidden;">
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event, u.id)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username1</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 100px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username2</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 200px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username3</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username4</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 400px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username5</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 200px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username6</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 200px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username7</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username8</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username9</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 500px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 100px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 500px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 100px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 500px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 100px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 500px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 100px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 500px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 100px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 500px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 100px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 300px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box" style="padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <div class="modal-title" style="overflow: hidden;">
+          <div style="float: left"><img src="#" style="width: 30px; height: 30px; float: left" (mouseover)="showPopinfo($event)"></div>
+          <div style="float: left; line-height: 30px"><span style="padding-left: 5px">Username</span></div>
+          <div style="float: left; line-height: 30px"><a href="#" style="padding-left: 5px">Follow</a></div>
+        </div>
+      </div>
+      <div class="">
+        <img src="#" style="width: 288px;height: 500px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+-->
+
+
+<div  id="recommend" style="float:left; padding: 0 10px 10px 0; overflow:hidden;width: 300px; display:inline-block;">
+  <recommend></recommend>
+</div>
+
+  <div #popinfo id="popinfo"></div>
+
+</div>

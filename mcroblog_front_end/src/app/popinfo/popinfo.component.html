@@ -1,0 +1,51 @@
+<div id="popinfo_main" #main  [style.background-color]="userService.user_extend.background_color"
+     style="margin-top:10px;position: absolute;z-index:9999;display: inline-block;z-index: 997;border-radius: 5px">
+  <div style="width: 300px;">
+    <div [ngStyle]="{'background-image': 'url(' + authenticationService.getStatic()+userService.user_extend.background_image + ')'}"
+         style="z-index: 998;object-fit:cover;width: 300px;height: 150px;border-radius: 5px;"></div>
+    <img src="{{authenticationService.getStatic()+userService.user_extend.head_image}}"
+         style="position: absolute;top:100px;left: 118px;width: 64px;height: 64px;border-radius: 30px; border: 3px solid rebeccapurple">
+
+    <div style="z-index: 999;position: absolute;width: 300px;height:auto;padding: 10px; top:0">
+      <div style="float: left">
+        <a href="#">
+          {{userService.user_extend.username}}
+        </a>
+      </div>
+
+      <div style="float: right">
+        <div class="btn-group close" style="float:left; padding-right: 50px">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+             style="margin-top: auto;margin-bottom: auto">☺</a>
+          <ul class="dropdown-menu" style="">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another</a></li>
+            <li><a href="#">Something</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separk</a></li>
+          </ul>
+        </div>
+        <a href="#" class="btn btn-default btn-xs">Unfollow</a>
+      </div>
+    </div>
+
+
+  </div>
+  <div id="profile" style="z-index:999;position: relative;text-align: center; padding-top: 20px">
+
+    <P style="font-size: 20px">{{userService.user_extend.username}}</P>
+    <div>
+      <h2><b>{{userService.user_extend.u_title}}</b></h2>
+      <p>{{userService.user_extend.profile}}</p>
+    </div>
+
+    <div style="padding: 5px">
+      <img src="#" style="width: 80px;height: 80px; padding: 5px">
+      <img src="#" style="width: 80px;height: 80px; padding: 5px">
+      <img src="#" style="width: 80px;height: 80px; padding: 5px">
+
+    </div>
+  </div>
+
+
+</div>

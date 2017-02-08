@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()" #postForm="ngForm" >
+  <div [@flyInOut]="postMess" id="post_body" class="modal-content" style="position: static;">
+    <div style="overflow:hidden; padding: 10px 20px 10px 20px;">
+      <span style="float:left;">username</span>
+      <span style="float:right;">Setting</span>
+    </div>
+    <div
+         style="background-color: #dadada; color: black;padding: 10px 20px 10px 20px; overflow: hidden;border-bottom: 2px dashed rgba(132,132,132,0.2); border-top: 2px dashed rgba(132,132,132,0.2);">
+
+      <div [@flyInOut]="vedioPost"
+           style="height: 200px;width: 250px; float:left; border-right:1px dashed rgba(132,132,132,0.2) ">
+        <input type="file" multiple accept="image/*">
+      </div>
+      <div [@flyInOut]="vedioPost"
+           style="height: 200px;width: 250px; float:right; border-left:1px dashed rgba(132,132,132,0.2)">
+
+      </div>
+
+    </div>
+    <div style="padding: 10px 20px 10px 20px; overflow: hidden; ">
+
+      <button class="btn btn-primary btn-xs" style="float:left;" (click)="hidePost()">Close</button>
+      <button type="submit" class="btn btn-primary btn-xs" style="float:right;">Post</button>
+    </div>
+  </div>
+</form>

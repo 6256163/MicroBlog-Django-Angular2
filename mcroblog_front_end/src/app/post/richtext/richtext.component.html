@@ -1,0 +1,69 @@
+<div [@flyInOut]="textPost">
+  <div #content_outer style="position: relative;font-size: 20px;min-height: 40px;">
+
+    <div id="content" #content class="con" contenteditable="true" style="z-index: 2;"
+         data-placeholder="" required
+         (mouseup)="load_InsertTool_TextStyle($event)"
+         (keyup)="load_InsertTool_TextStyle($event)"
+         (keydown)="load_InsertTool_TextStyle($event)"
+         (input)="load_InsertTool_TextStyle($event)"></div>
+
+  </div>
+  <div id="insert_tool" class="content_icon"
+       style="position:absolute;display:none;user-select: none;color: white">
+    <a>
+      <md-icon (click)="uploadImg($event,'#uploadImage')">image</md-icon>
+      <input id='uploadImage' type="file" accept="image/*" multiple style="display: none;"
+             (change)="processUploadImg($event)"/>
+    </a>
+    <a>
+      <md-icon (click)="show_insert_video($event)">videocam</md-icon>
+    </a>
+    <a>
+      <md-icon>remove</md-icon>
+    </a>
+    <a>
+      <md-icon>more horiz</md-icon>
+    </a>
+  </div>
+
+  <div id="editor_plugin"
+       style="overflow: hidden; display: none;position: absolute;color: white; user-select: none">
+    <md-icon [style.background-color]="editor_selection['b']?'#375a7f':'dimgrey'"
+             style="margin:0 5px;float:left;cursor: pointer;" (mouseup)="bold_text($event)">format_bold
+    </md-icon>
+    <md-icon [style.background-color]="editor_selection['i']?'#375a7f':'dimgrey'"
+             style="margin:0 5px;float:left;background-color: dimgrey;cursor: pointer;">format_italic
+    </md-icon>
+    <md-icon [style.background-color]="editor_selection['h2']?'#375a7f':'dimgrey'"
+             style="margin:0 5px;float:left;background-color: dimgrey;cursor: pointer;">title
+    </md-icon>
+    <md-icon [style.background-color]="editor_selection['a']?'#375a7f':'dimgrey'"
+             style="margin:0 5px;float:left;background-color: dimgrey;cursor: pointer;">insert_link
+    </md-icon>
+    <md-icon [style.background-color]="editor_selection['ol']?'#375a7f':'dimgrey'"
+             style="margin:0 5px;float:left;background-color: dimgrey;cursor: pointer;">format_list_numbered
+    </md-icon>
+    <md-icon [style.background-color]="editor_selection['ul']?'#375a7f':'dimgrey'"
+             style="margin:0 5px;float:left;background-color: dimgrey;cursor: pointer;">format_list_bulleted
+    </md-icon>
+    <md-icon [style.background-color]="editor_selection['blockquote']?'#375a7f':'dimgrey'"
+             style="margin:0 5px;float:left;background-color: dimgrey;cursor: pointer;">format_quote
+    </md-icon>
+
+  </div>
+
+  <div *ngIf="insert_video_dialog" (blur)="close_insert_video()"
+       id="insert-video" class='modal-content' style="position: absolute; display: none; z-index: 10">
+    <div style="padding: 10px">
+      <div id="video_url" style="background-color: #303030; color:white;width: 350px"
+           data-placeholder="Paste a URL or embed code" contenteditable="true"></div>
+    </div>
+    <div *ngIf="insert_video_error">{{this.insert_video_error}}</div>
+    <div style="overflow: hidden;padding: 5px 20px">
+      <a class="btn btn-danger btn-xs" style="float: left" (click)="close_insert_video()">Cancel</a>
+      <a class="btn btn-success btn-xs" style="float: right" (click)="insert_video()">OK</a>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+
+*:focus {
+  outline: none;
+}
+
+[contenteditable=true]:empty:before {
+  content: attr(data-placeholder);
+  display: inline-block; /* For Firefox */
+  color: #a2a2a2;
+}
+
+.blog-content {
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.blog-content p,text {
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.blog-content img {
+  width: 100%;
+  height: auto;
+}
+
+
+.blog-content embed{
+  width: 100%;
+}
+
+
+
+
+.insert_outer{
+  position: relative;
+}
+
+.insert_fig{
+}
+
+.insert_img{
+  width: 100%;
+  height: auto;
+}
+
+.insert_cross{
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  border-radius: 50%;
+  background-color: red;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  z-index:10;
+}
+
+.insert_cross:before{
+  content: '\2716';
+  color: white;
+}
+
+.insert_cross:hover{
+  top: -9px
+}
+
+.pwd_weak{
+  background-color: red;
+}
+
+.pwd_middle{
+  background-color: yellow;
+}
+
+.pwd_strong{
+  background-color: green;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}

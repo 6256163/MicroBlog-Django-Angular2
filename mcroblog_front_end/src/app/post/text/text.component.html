@@ -1,0 +1,30 @@
+<form (ngSubmit)="onSubmit()" #postForm="ngForm">
+  <div [@flyInOut]="postMess" id="post_body" class="modal-content" style="position: static;">
+    <div style="overflow:hidden; padding: 10px 20px 10px 20px;">
+      <span style="float:left;">username</span>
+      <span style="float:right;">Setting</span>
+    </div>
+    <div
+      style="padding: 10px 20px 10px 20px; border-top: 2px solid rgba(132,132,132,0.2);border-bottom: 2px solid rgba(132,132,132,0.2);">
+
+
+      <div id='title' class="con" contenteditable="true" data-placeholder="Title" [@flyInOut]="textPost"
+           style="min-height: 45px; font-size: 45px;margin-bottom: 20px"></div>
+
+      <rich-text #content  [placeholder]="'You text here'"></rich-text>
+
+      <div id="tag" class="con" contenteditable="true" data-placeholder="#tag" [@flyInOut]="textPost"
+           style="min-height: 20px; font-size: 20px;margin-top: 30px"></div>
+
+
+    </div>
+    <div style="padding: 10px 20px 10px 20px; overflow: hidden; ">
+
+      <a class="btn btn-primary btn-xs" style="float:left;" (click)="hidePost()">Close</a>
+      <button type="submit" class="btn btn-primary btn-xs" style="float:right;">Post</button>
+    </div>
+  </div>
+</form>
+
+
+

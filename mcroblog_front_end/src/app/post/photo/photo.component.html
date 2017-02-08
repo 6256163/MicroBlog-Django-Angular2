@@ -1,0 +1,52 @@
+<form (ngSubmit)="onSubmit()" #postForm="ngForm">
+  <div [@flyInOut]="postMess" id="post_body" class="modal-content" style="position: static;">
+    <div style="overflow:hidden; padding: 10px 20px 10px 20px;">
+      <span style="float:left;">username</span>
+      <span style="float:right;">Setting</span>
+    </div>
+    <div
+      style="margin:0 auto;padding: 10px 20px 10px 20px; overflow: hidden;
+      border-bottom: 2px dashed rgba(132,132,132,0.2); border-top: 2px dashed rgba(132,132,132,0.2);">
+      <div *ngIf="display_upload">
+        <div [@flyInOut]="photoPost"
+             style="height: 200px;width: 245px; float:left; border-right:1px dashed rgba(132,132,132,0.2);text-align: center">
+
+          <a>
+            <md-icon (click)="uploadImg($event,'#uploadPhoto')"
+                     style="font-size: 100px; margin: 30px 75px 0 0; cursor: pointer">photo_library
+            </md-icon>
+          </a>
+
+          <p>Upload Photos</p>
+          <md-icon (click)="shwoCamera()" style="margin: 0 auto; cursor: pointer">tag_faces</md-icon>
+        </div>
+
+        <div [@flyInOut]="photoPost"
+             style="height: 200px;width: 245px; float:left; border-left:1px dashed rgba(132,132,132,0.2)">
+        </div>
+      </div>
+      <div *ngIf="!display_upload">
+
+        <div id="photo-list"></div>
+        <div style="border-bottom: 2px dashed rgba(132,132,132,0.2); border-top: 2px dashed rgba(132,132,132,0.2);
+     text-align: center;padding: 15px 0;">
+          <a (click)="uploadImg($event,'#uploadPhoto')">Upload another</a>
+        </div>
+
+        <rich-text #content [placeholder]="'Add a caption if you like'"></rich-text>
+        <div id="tag" class="con" contenteditable="true" data-placeholder="#tag" [@flyInOut]="textPost"
+             style="min-height: 20px; font-size: 20px;margin-top: 30px"></div>
+
+
+      </div>
+    </div>
+    <camera *ngIf="display_camera" (output)="display_camera = $event"></camera>
+    <input id="uploadPhoto" type="file" multiple accept="image/*"
+           (change)="processUploadPhoto($event)"
+           style="display: none">
+    <div style="padding: 10px 20px 10px 20px; overflow: hidden; ">
+      <a class="btn btn-primary btn-xs" style="float:left;" (click)="hidePost()">Close</a>
+      <button type="submit" class="btn btn-primary btn-xs" style="float:right;">Post</button>
+    </div>
+  </div>
+</form>

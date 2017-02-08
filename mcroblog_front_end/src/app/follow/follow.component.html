@@ -1,0 +1,40 @@
+<div style="width:990px;margin: 0 auto;overflow: hidden">
+
+
+  <div style="width: 600px; margin: 20px;float: left">
+    <div class="form-group" style="overflow: hidden">
+      <div style="width: 500px;float: left;">
+        <input class="form-control" id="followInput" type="text" value=""
+               placeholder="enter a username, URL or email address to follow">
+      </div>
+      <div style="float: right;">
+        <button class="btn btn-primary">Follow</button>
+      </div>
+      <div>Error</div>
+    </div>
+
+    <div *ngFor="let l of list" style="padding:10px 0 10px 10px; border-bottom: 1px solid gray;overflow: hidden">
+      <div style="float: left;">
+        <img src="#" style="width: 45px;height: 45px;" (mouseover)="showProfile($event)">
+      </div>
+
+      <div style="float: left;">
+        <div style="margin-left: 10px;">
+          <a href="#" style="margin: 0;font-weight: 900;font-size: larger">username</a>
+          <p style="margin: 0">Latest update time</p>
+        </div>
+
+      </div>
+
+      <div style="float: right;">
+        <a href="#" class="btn btn-default">Unfollow</a>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div style="width: 300px; margin: 20px;float: right">
+    <recommend></recommend>
+  </div>
+</div>

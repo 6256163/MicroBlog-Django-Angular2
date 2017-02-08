@@ -1,0 +1,64 @@
+<div style="overflow: hidden;margin-bottom: 20px">
+  <div style="float: right; width: 540px;border-radius: 5px; background-color: rgba(255,38,68,0);border-radius: 5px;">
+    <div id="choose_post" style="overflow: hidden;border-radius: 5px">
+      <div style="float:left;height: 90px; width: 90px; background-color: #007f5e; text-align: center;">
+        <a style="text-decoration:none;cursor:pointer;color: white" (click)="showTextPost()">
+
+          <div style="line-height: 90px">
+            <span style="font-size: 50px">T</span><span style="font-size: 20px">ext</span>
+          </div>
+        </a>
+
+      </div>
+      <div style="float:left;height: 90px; width: 90px; background-color: #00a379; text-align: center;">
+        <a style="text-decoration:none;cursor:pointer;color: white" (click)="showPhotoPost()">
+          <div style="line-height: 90px">
+            <span style="font-size: 50px">P</span><span style="font-size: 20px">hoto</span>
+          </div>
+        </a>
+      </div>
+      <div style="float:left;height: 90px; width: 90px; background-color: #00bc8c; text-align: center;">
+        <a style="text-decoration:none;cursor:pointer;color: white" (click)="showLinkPost()">
+          <div style="line-height: 90px">
+            <span style="font-size: 50px">L</span><span style="font-size: 20px">ink</span>
+          </div>
+        </a>
+      </div>
+      <div style="float:left;height: 90px; width: 90px; background-color: #0bcb9a; text-align: center;">
+        <a style="text-decoration:none;cursor:pointer;color: white" (click)="showChatPost()">
+          <div style="line-height: 90px">
+            <span style="font-size: 50px">C</span><span style="font-size: 20px">hat</span>
+          </div>
+        </a>
+      </div>
+      <div style="float:left;height: 90px; width: 90px; background-color: #00dba3; text-align: center;">
+        <a style="text-decoration:none;cursor:pointer;color: white" (click)="showAudioPost()">
+          <div style="line-height: 90px">
+            <span style="font-size: 50px">A</span><span style="font-size: 20px">udio</span>
+          </div>
+        </a>
+      </div>
+      <div
+        style="float:left;height: 90px; width: 90px; background-color: #0ce3ac; text-align: center;">
+        <a style="text-decoration:none;cursor:pointer;color: white" (click)="showVedioPost()">
+          <div style="line-height: 90px">
+            <span style="font-size: 50px">V</span><span style="font-size: 20px">ideo</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <text *ngIf="textPost" (closeText)="textPost = $event"></text>
+    <photo *ngIf="photoPost" (closePhoto)="photoPost = $event"></photo>
+    <link-post *ngIf="linkPost" (output)="photoPost = $event"></link-post>
+    <audio *ngIf="audioPost" (output)="photoPost = $event"></audio>
+    <video *ngIf="videoPost" (output)="photoPost = $event"></video>
+
+  </div>
+  <div class="headimg" style="float: right;border-radius: 7px; margin-right: 20px; ">
+    <img src="{{authenticationService.getStatic()+authenticationService.user_extend.head_image}}"
+         (mouseover)="showPopinfo($event, authenticationService.user.id)"
+         style="width: 64px;height: 64px;">
+  </div>
+</div>
+<div #selfinfo id="selfinfo"></div>

@@ -1,0 +1,16 @@
+<div style="width: 300px; height: auto; margin: 0 auto;
+  background-color: white; padding: 30px; border-radius: 5px; text-align: center">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" >
+    <md-input placeholder="username" [(ngModel)]="model.username" name="username"
+              style="font-size: 20px; color: black"></md-input>
+
+    <md-input placeholder="password" [(ngModel)]="model.password" name="password" type="password"
+              style="font-size: 20px; color: black"></md-input>
+    <div *ngIf="error" style="text-align: center">
+      <p>{{error}}</p>
+    </div>
+    <div style="text-align: center">
+      <button type="submit" class="btn btn-primary btn-xs" style="">Login</button>
+    </div>
+  </form>
+</div>

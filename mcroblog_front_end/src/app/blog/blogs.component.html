@@ -1,0 +1,35 @@
+<div *ngFor="let b of blogs" style="overflow: hidden; margin-bottom: 20px; padding:0 30px">
+
+  <div class="modal-content" style="float: right; width: 540px;border-radius: 5px;border-radius: 5px;">
+    <div style=" height: 50px;">
+      <div style="margin-left: 20px">
+              <span style="line-height: 50px; ">
+              <a href="">{{b.user}}</a>
+              <md-icon style="">repeat</md-icon>
+              <a href="">fromUser</a>
+                </span>
+      </div>
+    </div>
+    <div style="padding: 0 20px">
+      <div *ngIf="b.title != ''" style="font-size: 40px">
+        <p >{{b.title}}</p>
+      </div>
+
+      <div style="padding: 10px 0; font-size: 20px">
+        <div class="blog-content" *ngFor="let content of b.content" [innerHTML]="content">
+        </div>
+      </div>
+      <div style="overflow:hidden; padding:10px 0">
+        <p style="float: right">{{b.pub_date}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="with_head_image" class="headimg" style="float: right;border-radius: 7px; margin-right: 20px;"
+       [style.background-image.url]="b.user" (click)="userService.show_blog(b.user_id)">
+    <img src="{{authenticationService.getStatic()+b.head_image}}" [title]="b.user"
+         (mouseover)="showPopinfo($event, b.user_id)" (scroll)="fixHeadImg()"
+         style="width: 64px;height: 64px;">
+  </div>
+</div>
+<div #popinfo id="popinfo"></div>

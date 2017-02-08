@@ -1,0 +1,19 @@
+
+<div *ngIf="authenticationService.authentication" style="width: 990px;margin: 0 auto; overflow: hidden">
+
+  <div style="float: right">
+    <recommend></recommend>
+  </div>
+
+
+  <div style="float: right; ">
+    <div style="padding:0 30px">
+    <post></post>
+    </div>
+
+    <div style="overflow: hidden;">
+      <blogs-list [with_head_image]="true" ></blogs-list>
+    </div>
+  </div>
+
+</div>
