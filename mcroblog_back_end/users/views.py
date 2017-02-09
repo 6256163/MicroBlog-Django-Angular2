@@ -53,10 +53,11 @@ class UserExtendViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def list(self, request, *args, **kwargs):
-        follower = Follow.objects.filter(blogger = request.user)
-        data = serializers.serialize("json", follower)
-
-        queryset = self.filter_queryset(self.get_queryset().filter(~Q(user=request.user) & Q(user=follower)))
+        follow = Follow.objects.filter(blogger = request.user)
+        followers = []
+        for f in follow:
+            followers.append(f.follower.user)
+        queryset = self.filter_queryset(self.get_queryset().filter(~Q(user=request.user) & ~Q(user__in=follower)))
 
         page = self.paginate_queryset(queryset)
         if page is not None:
