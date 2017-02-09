@@ -82,31 +82,51 @@ export class BlogComponent implements OnInit {
   }
 
 
-  private scoreMove: number = 0;
-
+  private scoreMoveTop: number = 0;
+  private scoreMoveLeft: number = 0;
+  private holdHeadImg_left = 0
+  private holdHeadImg_scrollLeft = 0;
   @HostListener('window:scroll', ['$event'])
   holdHeadImg(event) {
-    if (Math.abs(this.scoreMove - $(window).scrollTop())) {
-      this.scoreMove = $(window).scrollTop();
+    let _this = this;
+    if ($(window).scrollLeft() != _this.holdHeadImg_scrollLeft){
+      _this.holdHeadImg_scrollLeft = $(window).scrollLeft()
+    }
+
+    // 页面开始滑动 触发判断
+    if (Math.abs(this.scoreMoveTop - $(window).scrollTop()) ||
+      Math.abs(this.scoreMoveLeft - $(window).scrollLeft())) {
+      this.scoreMoveTop = $(window).scrollTop();
+      this.scoreMoveLeft = $(window).scrollLeft();
       let $targets = $(event.currentTarget.document).find('.headimg');
       $targets.each(function (index, value) {
+
+        // 寻找当前client窗口中最顶部的img元素
         if ($(value).offset().top >= $(value).parent().offset().top && $(value).offset().top - $(window).scrollTop() <= 81) {
-          let left = $(value).offset().left;
+          if (!_this.holdHeadImg_left){
+            _this.holdHeadImg_left = $(value).offset().left;
+          }
+          let right = $('.modal-content').eq(0).offset().left
+          // img元素底部未超过对应blog内容的底部
           $(value).css({
             'position': 'fixed',
             'top': '81px',
-            'left': left + 'px'
+            'left': _this.holdHeadImg_left -_this.holdHeadImg_scrollLeft + 'px'
           })
+
+          //img元素其位置即将超过对应blog内容的底部
           if ($(value).offset().top + $(value).outerHeight() >= $(value).parent().offset().top + $(value).parent().outerHeight()) {
 
             $(value).css({
               'position': 'absolute',
               'top': $(value).parent().offset().top + $(value).parent().outerHeight() - $(value).outerHeight() + 'px',
-              'left': left + 'px'
+              'left': _this.holdHeadImg_left + 'px'
             })
 
           }
         }
+
+        //client窗口中不可见的img元素 或 非第一个可见img元素
         else {
           $(value).css({
             'position': 'static',
