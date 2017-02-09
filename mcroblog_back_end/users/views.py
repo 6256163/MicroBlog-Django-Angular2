@@ -57,7 +57,7 @@ class UserExtendViewSet(viewsets.ModelViewSet):
         followers = []
         for f in follow:
             followers.append(f.follower.user)
-        queryset = self.filter_queryset(self.get_queryset().filter(~Q(user=request.user) & ~Q(user__in=follower)))
+        queryset = self.filter_queryset(self.get_queryset().filter(~Q(user=request.user) & ~Q(user__in=followers)))
 
         page = self.paginate_queryset(queryset)
         if page is not None:
