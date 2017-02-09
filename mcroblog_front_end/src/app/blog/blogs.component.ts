@@ -106,7 +106,7 @@ export class BlogComponent implements OnInit {
           if (!_this.holdHeadImg_left){
             _this.holdHeadImg_left = $(value).offset().left;
           }
-          let right = $('.modal-content').eq(0).offset().left
+          let right = $('#choose_post').eq(0).offset().left
           // img元素底部未超过对应blog内容的底部
           $(value).css({
             'position': 'fixed',

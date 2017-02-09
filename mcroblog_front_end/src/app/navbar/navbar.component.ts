@@ -25,11 +25,11 @@ export class NavbarComponent {
   private hideChat: boolean = true;
   private hideActivity: boolean = true;
   private hideAccount: boolean = true;
-  private authentication:boolean;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
   ) { }
+
 
   chatShowHide(event) {
     this.hideActivity = true;
@@ -56,22 +56,5 @@ export class NavbarComponent {
   mouseOut(event) {
     event.currentTarget.className = '';
   }
-
-
-  /* dynamic load
-   constructor(private resolver: ComponentFactoryResolver) {
-   }
-
-   @ViewChild('popinfo', {read: ViewContainerRef})
-   private popinfo: any; //dynamic target
-
-   private componentReference: ComponentRef<any>;
-
-   ngAfterViewInit() {
-   // Create our chat component now we're initialised
-   let componentFactory = this.resolver.resolveComponentFactory(PopinfoComponent);
-   this.componentReference = this.popinfo.createComponent(componentFactory);
-   }
-   */
 
 }

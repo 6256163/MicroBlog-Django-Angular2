@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
 import * as $ from 'jquery';
 import {AuthenticationService} from "../service/http/authentication.service";
 import {Router} from "@angular/router";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 
 @Component({
@@ -16,13 +17,29 @@ import {Router} from "@angular/router";
 export class AccountComponent {
 
   constructor(private authenticationService: AuthenticationService,
-  private router:Router){}
+              private router: Router,
+              private nav: NavbarComponent) {
+  }
 
-  logout(){
+  logout() {
+    this.hideSelf();
     this.authenticationService.logout()
       .subscribe(
         data => {
-          this.router.navigate(['']);
+          //Redirect to default page
+          //this.router.navigate(['']);
+          this.authenticationService.isLogin()
+            .subscribe(
+              data => {
+                this.authenticationService.authentication = true
+              },
+              error => {
+                this.router.navigate(['login']);
+              });
         });
+  }
+
+  hideSelf() {
+    this.nav.accountShowHide(event)
   }
 }

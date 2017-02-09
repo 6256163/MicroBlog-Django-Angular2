@@ -94,6 +94,7 @@ export function getXSRF() {
     FileUploadService,
     DecodeService,
     FollowService,
+    NavbarComponent,
     //{ provide: XSRFStrategy, useValue: new CookieXSRFStrategy('csrftoken', 'X-CSRFToken') }
     {
       provide: XSRFStrategy,
