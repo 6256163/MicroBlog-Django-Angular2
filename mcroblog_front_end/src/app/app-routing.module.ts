@@ -9,6 +9,7 @@ import {LikesComponent} from "./likes/likes.component";
 import {HomeComponent} from "./home/home.component";
 import {LoginFormComponent} from "./login/login-form.component";
 import {RegisterFormComponent} from "./register/register-form.component";
+import {BrowserModule} from "@angular/platform-browser";
 
 
 const appRoutes: Routes = [
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
   },
 ];
 @NgModule({
-  imports: [ RouterModule.forRoot(appRoutes) ],
+  imports: [ BrowserModule,RouterModule.forRoot(appRoutes, { useHash: true }) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

@@ -1,4 +1,3 @@
-
 <div style="height: 81px"></div>
 
 <nav class="navbar navbar-default" style="z-index: 9999;position: fixed;top: 0;width: 100%">
@@ -16,13 +15,18 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="float: right">
       <ul *ngIf="authenticationService.authentication" class="nav navbar-nav">
-        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)"><a routerLink="/home"
-                                                                             routerLinkActive="active">Home</a></li>
-        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)"><a routerLink="/explore"
-                                                                             routerLinkActive="active">Explore</a></li>
-        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)"><a href="#">Inbox</a></li>
+        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)">
+          <a routerLink="/home"
+             routerLinkActive="active">Home</a>
+        </li>
+        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)">
+          <a routerLink="/explore"
+             routerLinkActive="active">Explore</a></li>
+        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)">
+          <a href="#">Inbox</a></li>
 
-        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)"><a (click)="chatShowHide($event)">Chat</a>
+        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)">
+          <a (click)="chatShowHide($event)">Chat</a>
         </li>
         <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)"><a
           (click)="avtivityShowHide($event)">Activity</a></li>
@@ -32,8 +36,9 @@
 
 
       <ul *ngIf="!authenticationService.authentication" class="nav navbar-nav">
-        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)"><a routerLink="/register"
-                                                                             routerLinkActive="active">Register</a></li>
+        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)">
+          <a routerLink="/register"
+             routerLinkActive="active">Register</a></li>
       </ul>
 
     </div>
@@ -42,7 +47,8 @@
 <div *ngIf="!hideChat" #chat [@flyInOut]="!hideChat" style="position: fixed;right: 30px;top: 60px;z-index: 9999">
   <chat *ngIf="authenticationService.authentication"></chat>
 </div>
-<div *ngIf="!hideActivity" #activity [@flyInOut]="!hideActivity" style="position: fixed;right: 0;top: 60px;z-index: 9999">
+<div *ngIf="!hideActivity" #activity [@flyInOut]="!hideActivity"
+     style="position: fixed;right: 0;top: 60px;z-index: 9999">
   <activity *ngIf="authenticationService.authentication"></activity>
 </div>
 <div *ngIf="!hideAccount" #account [@flyInOut]="!hideAccount" style="position: fixed;right: 0;top: 60px;z-index: 9999">

@@ -42,6 +42,7 @@ export function getXSRF() {
   return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
 }
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,6 @@ export function getXSRF() {
     AppRoutingModule,
     MaterialModule.forRoot(),
     ReactiveFormsModule,
-
   ],
 
   //declare dynamical component in entryComponents
@@ -101,7 +101,7 @@ export function getXSRF() {
       useFactory: getXSRF,
     }
   ],
-  bootstrap: [AppComponent,]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
