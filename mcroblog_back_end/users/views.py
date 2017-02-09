@@ -143,7 +143,7 @@ def register(request):
                     re.match(re_email, data.get('email'))
                 ):
                 user = User.objects.create_user(**data)
-                bg = random.sample(['white','pink','#90abff', 'yellow'], 1)
+                bg = random.sample(['white','pink','#90abff', 'yellow'], 1)[0]
                 user_extend = UserExtend.objects.create(user=user, background_color = bg)
                 return http.HttpResponse(status=status.HTTP_201_CREATED)
             else:
