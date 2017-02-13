@@ -6,7 +6,7 @@
 
     <md-input placeholder="password" [(ngModel)]="model.password" name="password" type="password"
               style="font-size: 20px; color: black"></md-input>
-    <div *ngIf="error" style="text-align: center">
+    <div *ngIf="error" style="text-align: center; color: red;;">
       <p>{{error}}</p>
     </div>
     <div style="text-align: center">

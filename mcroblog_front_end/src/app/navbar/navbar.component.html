@@ -38,7 +38,12 @@
       <ul *ngIf="!authenticationService.authentication" class="nav navbar-nav">
         <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)">
           <a routerLink="/register"
-             routerLinkActive="active">Register</a></li>
+             routerLinkActive="active">Register</a>
+        </li>
+        <li (mouseover)="mouseOver($event)" (mouseout)="mouseOut($event)">
+          <a routerLink="/login"
+             routerLinkActive="active">Login</a>
+        </li>
       </ul>
 
     </div>

@@ -44,8 +44,8 @@ export class LoginFormComponent implements OnInit{
           this.router.navigate(['home']);
         },
         error => {
-          if(error.status == 401){
-            this.error='login fail';
+          if(error){
+            this.error=error;
 
           }
 

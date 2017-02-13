@@ -106,10 +106,10 @@ class LoginView(views.APIView):
                 auth.login(request, user)
                 return http.JsonResponse(UserSerializer(user, context={'request': request}).data)
             else:
-                return Response(status=status.HTTP_403_FORBIDDEN)
+                return http.HttpResponseBadRequest("User is deactivate")
 
         else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return http.HttpResponseBadRequest("Username or password is wrong")
 
 
 def logout(request):
@@ -147,6 +147,6 @@ def register(request):
                 user_extend = UserExtend.objects.create(user=user, background_color = bg)
                 return http.HttpResponse(status=status.HTTP_201_CREATED)
             else:
-                return http.HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+                return http.HttpResponseBadRequest("The format of username, password of email is incorrect.")
         else:
             return http.HttpResponseBadRequest("Username or email is existing")

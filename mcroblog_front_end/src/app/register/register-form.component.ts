@@ -211,7 +211,7 @@ export class RegisterFormComponent implements OnInit {
               });
         },
         error => {
-          console.log(error);
+          this.error = error;
         });
   }
 
