@@ -65,4 +65,6 @@
     - [ ] 系统
         - [ ] 查找
         - [ ] 推荐用户（Recommend user） 
+    - [ ] 浏览器兼容
+    - [ ] 移动端适配
     - [ ] <font color=gray>(待定)</font>
