@@ -147,7 +147,7 @@ SESSION_COOKIE_DOMAIN = ".catchcat.top"
 
 CSRF_COOKIE_DOMAIN = ".catchcat.top"
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 
 # logging setting
 LOGGING = {

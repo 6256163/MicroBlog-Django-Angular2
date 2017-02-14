@@ -8,6 +8,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.db.models import Q
+from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import permissions
 from rest_framework import status
 from rest_framework import views
@@ -17,6 +18,8 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
+from blog.models import Blog
+from blog.serializers import BlogSerializer
 from users.models import UserExtend, Follow
 from users.serializers import UserSerializer, UserExtendSerializer, FollowSerializer
 
@@ -53,7 +56,7 @@ class UserExtendViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
     def list(self, request, *args, **kwargs):
-        follow = Follow.objects.filter(blogger = request.user)
+        follow = Follow.objects.filter(blogger=request.user)
         followers = []
         for f in follow:
             followers.append(f.follower.user)
@@ -66,6 +69,17 @@ class UserExtendViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+    def retrieve(self, request, *args, **kwargs):
+        # get user
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        # get recent blogs
+        queryset_blogs = Blog.objects.filter(user=instance.user).order_by('-pub_date')[:3]
+        serializer_blogs = BlogSerializer(queryset_blogs, context={'request': request}, many=True)
+        return Response({'user': serializer.data, 'blogs': serializer_blogs.data})
+
 
 class FollowViewSet(viewsets.ModelViewSet):
     """
@@ -116,7 +130,7 @@ def logout(request):
     auth.logout(request)
     return http.HttpResponse(status=status.HTTP_200_OK)
 
-
+@ensure_csrf_cookie #set the csrf always
 def isLogin(request):
     if request.user.is_authenticated():
         return http.JsonResponse({'user': UserSerializer(request.user, context={'request': request}).data,
@@ -124,6 +138,7 @@ def isLogin(request):
                                                                       context={'request': request}).data})
     else:
         return http.HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
+
 
 
 @permission_classes((AllowAny,))
@@ -143,8 +158,8 @@ def register(request):
                     re.match(re_email, data.get('email'))
                 ):
                 user = User.objects.create_user(**data)
-                bg = random.sample(['white','pink','#90abff', 'yellow'], 1)[0]
-                user_extend = UserExtend.objects.create(user=user, background_color = bg)
+                bg = random.sample(['white', 'pink', '#90abff', 'yellow'], 1)[0]
+                user_extend = UserExtend.objects.create(user=user, background_color=bg)
                 return http.HttpResponse(status=status.HTTP_201_CREATED)
             else:
                 return http.HttpResponseBadRequest("The format of username, password of email is incorrect.")
