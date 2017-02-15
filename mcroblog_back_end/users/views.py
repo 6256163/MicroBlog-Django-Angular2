@@ -14,7 +14,8 @@ from rest_framework import status
 from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, list_route
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
@@ -22,6 +23,11 @@ from blog.models import Blog
 from blog.serializers import BlogSerializer
 from users.models import UserExtend, Follow
 from users.serializers import UserSerializer, UserExtendSerializer, FollowSerializer
+
+class SmallResultsSetPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 50
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -52,7 +58,7 @@ class UserExtendViewSet(viewsets.ModelViewSet):
     """
     queryset = UserExtend.objects.all()
     serializer_class = UserExtendSerializer
-
+    pagination_class = SmallResultsSetPagination
     permission_classes = (IsAuthenticated,)
 
     def list(self, request, *args, **kwargs):
@@ -66,9 +72,8 @@ class UserExtendViewSet(viewsets.ModelViewSet):
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
-
         serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return serializer
 
     def retrieve(self, request, *args, **kwargs):
         # get user
@@ -130,7 +135,8 @@ def logout(request):
     auth.logout(request)
     return http.HttpResponse(status=status.HTTP_200_OK)
 
-@ensure_csrf_cookie #set the csrf always
+
+@ensure_csrf_cookie  # set the csrf always
 def isLogin(request):
     if request.user.is_authenticated():
         return http.JsonResponse({'user': UserSerializer(request.user, context={'request': request}).data,
@@ -138,7 +144,6 @@ def isLogin(request):
                                                                       context={'request': request}).data})
     else:
         return http.HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
-
 
 
 @permission_classes((AllowAny,))

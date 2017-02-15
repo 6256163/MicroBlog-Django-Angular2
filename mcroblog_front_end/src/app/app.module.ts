@@ -95,7 +95,7 @@ export function getXSRF() {
     DecodeService,
     FollowService,
     NavbarComponent,
-    //{ provide: XSRFStrategy, useValue: new CookieXSRFStrategy('csrftoken', 'X-CSRFToken') }
+    BlogComponent,
     {
       provide: XSRFStrategy,
       useFactory: getXSRF,

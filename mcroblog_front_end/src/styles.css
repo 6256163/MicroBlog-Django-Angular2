@@ -89,3 +89,20 @@ input:-webkit-autofill {
   word-wrap: break-word;
   word-break: normal;
 }
+
+.wrap{
+  word-wrap: break-word;
+  word-break: normal;
+  overflow: hidden;
+}
+
+.play_button{
+  position: absolute;
+  top: 22%;
+  left: 22%;
+  height: 46px;
+  width: 46px;
+  overflow: hidden;
+  background: url(assets/posts_sprite.png) -50px 0 no-repeat;
+  cursor: pointer;
+}

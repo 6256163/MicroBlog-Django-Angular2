@@ -3,28 +3,26 @@
   <div style="border-bottom: 3px solid gray">
     RECOMMEND BLOGS
   </div>
+    <div *ngFor="let u of users" style="padding:10px; border-bottom: 1px solid gray;overflow: hidden" [@showhide]="!u">
+      <div style="float: left;">
+        <img src="{{authenticationService.getStatic()+u.head_image}}"
+             style="width: 37px;height: 37px;" (mouseover)="showPopinfo($event, u.id)">
+      </div>
 
-  <div *ngFor="let u of users" style="padding:10px; border-bottom: 1px solid gray;overflow: hidden" >
-    <div style="float: left;">
-      <img src="{{authenticationService.getStatic()+u.head_image}}"
-           style="width: 37px;height: 37px;" (mouseover)="showPopinfo($event, u.id)">
-    </div>
+      <div style="float: left;">
+        <div style="margin-left: 10px; font-size: small">
+          <p style="margin: 0">{{u.username}}</p>
+          <p style="margin: 0">{{u.u_title}}</p>
+        </div>
+      </div>
 
-    <div style="float: left;">
-      <div style="margin-left: 10px; font-size: small">
-        <p style="margin: 0">{{u.username}}</p>
-        <p style="margin: 0">{{u.u_title}}</p>
+      <div style="float: right; padding: 10px 0">
+        <a (click)="follow(u)">Follow</a>
       </div>
     </div>
 
-    <div style="float: right; padding: 10px 0">
-      <a (click)="follow(u)">Follow</a>
-    </div>
-  </div>
-
-
   <div>
-    <a href="#" style="padding-left: 10px">Show More</a>
+    <a href="#" style="padding-left: 10px" (click)="getMore()">Show More</a>
   </div>
 
   <br><br><br>

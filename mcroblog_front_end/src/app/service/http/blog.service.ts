@@ -8,6 +8,8 @@ import {map} from "rxjs/operator/map";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
+import {DecodeService} from "../decode/decode.service";
+import {DomSanitizer} from "@angular/platform-browser";
 @Injectable()
 export class BlogService {
 
@@ -19,7 +21,9 @@ export class BlogService {
 
   constructor(private  http: Http,
               private router: Router,
-              private authentication: AuthenticationService,) {
+              private authentication: AuthenticationService,
+              private decode: DecodeService,
+              private sanitizer: DomSanitizer,) {
   }
 
   postBlog(blogModel): Observable<any> {
@@ -37,6 +41,7 @@ export class BlogService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+
 
   private extractData(res: Response) {
     let body = {'results': [], 'next': ''};
@@ -60,48 +65,29 @@ export class BlogService {
   }
 
 
-  /*
-   let blogs= [
-   {
-   id: 1,
-   title: 'title1',
-   images: ['media_for_dev/web1.png'],
-   content: 'content1',
-   user: 'user1',
-   pub_date: new Date().getDate(),
-   tag: '#tag1',
-   },
+  decodeBlogs(blogs_object){
+    let blogs = []
+    blogs_object.forEach((item, index) => {
+      blogs.push(item)
+      let saveHTML: any[] = [];
+      for (let content of blogs_object[index].content.split('@')) {
+        let $content_dom = $(this.decode.b64DecodeUnicode(content));
+        if ($content_dom[0].nodeName == 'P') {
 
-   {
-   id: 2,
-   title: 'title2',
-   images: ['media_for_dev/web1.png'],
-   content: 'content2',
-   user: 'user2',
-   pub_date: new Date().getDate(),
-   tag: '#tag2',
-   },
+        }
+        else if ($content_dom[0].nodeName == 'IMG') {
+          $content_dom.attr('src', this.authentication.getStatic() + $content_dom.attr('src'))
+        }
+        else if ($content_dom[0].nodeName == 'EMBED') {
+          $content_dom.show();
+        }
+        saveHTML.push(this.sanitizer.bypassSecurityTrustHtml($content_dom[0].outerHTML));
+      }
+      blogs[index].content = saveHTML;
+      blogs[index].title = this.decode.b64DecodeUnicode(blogs[index].title)
+      blogs[index].tags = this.decode.b64DecodeUnicode(blogs[index].tags)
 
-   {
-   id: 3,
-   title: 'title3',
-   images: ['media_for_dev/web1.png'],
-   content: 'content3',
-   user: 'user3',
-   pub_date: new Date().getDate(),
-   tag: '#tag3',
-   },
-
-   {
-   id: 4,
-   title: 'title4',
-   images: ['media_for_dev/web1.png'],
-   content: 'content4',
-   user: 'user4',
-   pub_date: new Date().getDate(),
-   tag: '#tag4',
-   }
-   ]
-   */
-
+    });
+    return blogs
+  }
 }

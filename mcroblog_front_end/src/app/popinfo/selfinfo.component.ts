@@ -28,6 +28,12 @@ export class SelfinfoComponent  {
 
   @HostListener('document:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
+    if (this.popinfoService.ref) {
+      //this.top is set in popinfo.service.createCom()
+      this.bottom = $('#popinfo_main').offset().top + $('#popinfo_main').outerHeight();
+      this.left = $('#popinfo_main').offset().left;
+      this.right = this.left + $('#popinfo_main').outerWidth();
+    }
     if (event.pageY < this.top ||
       event.pageY > this.bottom ||
       event.pageX < this.left ||

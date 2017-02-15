@@ -6,6 +6,7 @@ import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import {User, UserExtend} from "../../model/user";
 import {Observable} from "rxjs";
 import {AuthenticationService} from "./authentication.service";
+import {Blog} from "../../model/blog";
 
 @Injectable()
 export class UserService {
@@ -26,9 +27,9 @@ export class UserService {
   }
 
   show_user_blog = false;
-  user_extend = new UserExtend();
+  user_extend = new UserExtend()
   users: any[] = [];
-  user_id:number;
+  user_id: number;
 
   show_blog(user_id) {
     this.show_user_blog = true;
@@ -61,7 +62,14 @@ export class UserService {
     let options = new RequestOptions({headers: headers, withCredentials: true,});
     return this.http.get(this.authenticationService.getApi() + this.user_extend_url + id + '/', this.options)
       .toPromise()
-      .then(response => response.json() as UserExtend)
+      .then(response => response.json())
+      .catch(this.handleError)
+  }
+
+  getByNextPage(url:string):Promise<any> {
+    return this.http.get(url, this.options)
+      .toPromise()
+      .then(response => response.json())
       .catch(this.handleError)
   }
 

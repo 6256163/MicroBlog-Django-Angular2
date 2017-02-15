@@ -45,7 +45,3 @@ class BlogViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
-
-    @detail_route(methods=['get'])
-    def recent_blogs(self, request, user):
-        queryset = self.filter_queryset(self.get_queryset().filter(user=user)).order_by("-pub_date")

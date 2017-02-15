@@ -1,7 +1,10 @@
 /**
  * Created by tianzhang on 2016/12/22.
  */
-import {Component, OnInit, AfterViewInit, ViewChild, ViewContainerRef, HostListener, Input} from "@angular/core";
+import {
+  Component, OnInit, AfterViewInit, ViewChild, ViewContainerRef, HostListener, Input,
+  Injectable
+} from "@angular/core";
 import {Blog} from "../model/blog";
 import {BlogService} from "../service/http/blog.service";
 import {PopinfoService} from "../popinfo/popinfo.service";
@@ -15,17 +18,16 @@ import {UserService} from "../service/http/user.service";
   templateUrl: './blogs.component.html',
   providers: [BlogService],
 })
+@Injectable()
 export class BlogComponent implements OnInit {
-  blogs: Blog[];
+  blogs = [];
   errorMessage: string;
   nextPage: number;
   @Input()
   with_head_image: boolean;
 
   constructor(private blogService: BlogService,
-              private sanitizer: DomSanitizer,
               private popinfoService: PopinfoService,
-              private decode: DecodeService,
               private authenticationService: AuthenticationService,
               private userService: UserService,) {
 
@@ -41,30 +43,7 @@ export class BlogComponent implements OnInit {
     this.blogService.getBlogs()
       .subscribe(
         body => {
-          this.blogs = []
-          body.results.forEach((item, index) => {
-            this.blogs.push(item)
-
-            //this.blogs[index].content =this.sanitizer.bypassSecurityTrustHtml(body.results[index].content.split('@'));
-            let saveHTML: any[] = [];
-            for (let content of body.results[index].content.split('@')) {
-              let $content_dom = $(this.decode.b64DecodeUnicode(content));
-              if ($content_dom[0].nodeName == 'P') {
-
-              }
-              else if ($content_dom[0].nodeName == 'IMG') {
-                $content_dom.attr('src', this.authenticationService.getStatic() + $content_dom.attr('src'))
-              }
-              else if ($content_dom[0].nodeName == 'EMBED') {
-                $content_dom.show();
-              }
-              saveHTML.push(this.sanitizer.bypassSecurityTrustHtml($content_dom[0].outerHTML));
-            }
-            this.blogs[index].content = saveHTML;
-            this.blogs[index].title = this.decode.b64DecodeUnicode(this.blogs[index].title)
-            this.blogs[index].tags = this.decode.b64DecodeUnicode(this.blogs[index].tags)
-
-          });
+          this.blogs = this.blogService.decodeBlogs(body.results)
           this.nextPage = body.next
         },
         error => this.errorMessage = <any>error);
@@ -76,20 +55,21 @@ export class BlogComponent implements OnInit {
   private popinfo: any; //dynamic target
 
 
-  showPopinfo(eventTarget ,user_id) {
-    this.popinfoService.loadCom(this.popinfo, PopinfoComponent, $(eventTarget.currentTarget),user_id)
+  showPopinfo(eventTarget, user_id) {
+    this.popinfoService.loadCom(this.popinfo, PopinfoComponent, $(eventTarget.currentTarget), user_id)
 
   }
 
 
   private scoreMoveTop: number = 0;
   private scoreMoveLeft: number = 0;
-  private holdHeadImg_left = 0
+  private holdHeadImg_left = 0;
   private holdHeadImg_scrollLeft = 0;
+
   @HostListener('window:scroll', ['$event'])
   holdHeadImg(event) {
     let _this = this;
-    if ($(window).scrollLeft() != _this.holdHeadImg_scrollLeft){
+    if ($(window).scrollLeft() != _this.holdHeadImg_scrollLeft) {
       _this.holdHeadImg_scrollLeft = $(window).scrollLeft()
     }
 
@@ -103,7 +83,7 @@ export class BlogComponent implements OnInit {
 
         // 寻找当前client窗口中最顶部的img元素
         if ($(value).offset().top >= $(value).parent().offset().top && $(value).offset().top - $(window).scrollTop() <= 81) {
-          if (!_this.holdHeadImg_left){
+          if (!_this.holdHeadImg_left) {
             _this.holdHeadImg_left = $(value).offset().left;
           }
           let right = $('#choose_post').eq(0).offset().left
@@ -111,7 +91,7 @@ export class BlogComponent implements OnInit {
           $(value).css({
             'position': 'fixed',
             'top': '81px',
-            'left': _this.holdHeadImg_left -_this.holdHeadImg_scrollLeft + 'px'
+            'left': _this.holdHeadImg_left - _this.holdHeadImg_scrollLeft + 'px'
           })
 
           //img元素其位置即将超过对应blog内容的底部
@@ -126,7 +106,7 @@ export class BlogComponent implements OnInit {
           }
         }
 
-        //client窗口中不可见的img元素 或 非第一个可见img元素
+
         else {
           $(value).css({
             'position': 'static',
@@ -138,5 +118,19 @@ export class BlogComponent implements OnInit {
 
       })
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    let $targets = $(event.currentTarget.document).find('.headimg');
+    $targets.each(function (index, value) {
+      $(value).css({
+        'position': 'static',
+        'top': '',
+        'left': ''
+      });
+    })
+    this.holdHeadImg_left = 0
+    this.holdHeadImg_scrollLeft = 0;
   }
 }

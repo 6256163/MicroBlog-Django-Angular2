@@ -6,26 +6,31 @@ import {
 } from "@angular/core";
 import 'rxjs/add/operator/toPromise'
 import {UserService} from "../service/http/user.service";
+import {BlogComponent} from "../blog/blogs.component";
+import {BlogService} from "../service/http/blog.service";
 @Injectable()
 export class PopinfoService {
-  private ref: any;
+  public ref: any;
 
   constructor(private resolver: ComponentFactoryResolver,
-              private userService: UserService,) {
+              private userService: UserService,
+              private blogService: BlogService,) {
   }
 
 
-  loadCom(viewChild, dynamic_com,$targer, user_id) {
+  loadCom(viewChild, dynamic_com, $targer, user_id) {
     this.userService.getById(user_id)
-      .then(user => {
-        this.userService.user_extend = user;
-        this.createCom(viewChild, dynamic_com,$targer)
+      .then(data => {
+        this.userService.user_extend.user = data.user;
+        this.userService.user_extend.blogs = this.blogService.decodeBlogs(data.blogs);
+        this.createCom(viewChild, dynamic_com, $targer)
       })
   }
 
-  createCom(viewChild,dynamic_com, $targer) {
 
-    // Create our chat component now we're initialised
+  createCom(viewChild, dynamic_com, $targer) {
+
+    // Create our popinfo component now we're initialised
     /*
      viewChild: dynamic load the component under viewChild - eg. @ViewChild('popinfo', {read: ViewContainerRef})
      targetCom: The component need to be dynamic loaded.
@@ -42,11 +47,6 @@ export class PopinfoService {
         'left': left < 0 ? 0 : left + 'px',
       });
       componentReference.instance.top = $targer.offset().top;
-      componentReference.instance.bottom = $(componentReference._nativeElement.firstChild).offset().top +
-        $(componentReference._nativeElement.firstChild).outerHeight();
-      componentReference.instance.left = $(componentReference._nativeElement.firstChild).offset().left;
-      componentReference.instance.right = $(componentReference._nativeElement.firstChild).offset().left +
-        $(componentReference._nativeElement.firstChild).outerWidth();
 
     }
 

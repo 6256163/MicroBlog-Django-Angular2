@@ -24,6 +24,12 @@ export class PopinfoComponent {
 
   @HostListener('document:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
+    if (this.popinfoService.ref) {
+      //this.top is set in popinfo.service.createCom()
+      this.bottom = $('#popinfo_main').offset().top + $('#popinfo_main').outerHeight();
+      this.left = $('#popinfo_main').offset().left;
+      this.right = this.left + $('#popinfo_main').outerWidth();
+    }
     if (event.pageY < this.top ||
       event.pageY > this.bottom ||
       event.pageX < this.left ||
@@ -31,6 +37,18 @@ export class PopinfoComponent {
       this.popinfoService.destoryCom()
     }
 
+  }
+
+  getBlogContent(blog){
+    for(let b of blog.content){
+      if($(b.changingThisBreaksApplicationSecurity)[0].localName == 'img'){
+        return $(b.changingThisBreaksApplicationSecurity).addClass('insert_img')[0].outerHTML
+      }
+      else if ($(b.changingThisBreaksApplicationSecurity)[0].localName == 'embed'){
+        return $('<div></div>').addClass('play_button')[0].outerHTML
+      }
+    }
+    return blog.title
   }
 
 }
