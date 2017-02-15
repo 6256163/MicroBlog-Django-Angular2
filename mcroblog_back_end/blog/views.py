@@ -1,5 +1,7 @@
 # coding=utf-8
 from copy import copy
+
+from django.db.models import Q
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication
@@ -11,6 +13,7 @@ from serializers import BlogSerializer
 
 
 # Create your views here.
+from users.models import Follow
 
 
 class BlogViewSet(viewsets.ModelViewSet):
@@ -36,7 +39,11 @@ class BlogViewSet(viewsets.ModelViewSet):
 
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset().filter(user=request.user)).order_by("-pub_date")
+        follow = Follow.objects.filter(blogger = request.user)
+        followers = []
+        for f in follow:
+            followers.append(f.follower.user)
+        queryset = self.filter_queryset(self.get_queryset().filter(Q(user=request.user) and Q(user__in=followers))).order_by("-pub_date")
 
         page = self.paginate_queryset(queryset)
         if page is not None:

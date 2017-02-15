@@ -4,15 +4,17 @@
     <div style=" height: 50px;">
       <div style="margin-left: 20px">
               <span style="line-height: 50px; ">
-              <a href="">{{b.user}}</a>
-              <md-icon style="">repeat</md-icon>
-              <a href="">fromUser</a>
-                </span>
+                <a href="">{{b.user}}</a>
+                <div *ngIf="false">
+                  <md-icon style="">repeat</md-icon>
+                  <a href="">fromUser</a>
+                </div>
+              </span>
       </div>
     </div>
     <div style="padding: 0 20px">
       <div *ngIf="b.title != ''" style="font-size: 40px">
-        <p >{{b.title}}</p>
+        <p>{{b.title}}</p>
       </div>
 
       <div style="padding: 10px 0; font-size: 20px">
