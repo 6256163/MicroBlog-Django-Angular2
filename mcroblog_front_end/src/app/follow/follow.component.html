@@ -1,7 +1,7 @@
-<div style="width:990px;margin: 0 auto;overflow: hidden">
+<div style="width:990px;margin: 0 auto;overflow: hidden" >
 
 
-  <div style="width: 600px; margin: 20px;float: left">
+  <div style="width: 640px; margin: 10px; padding:20px;float: left" class="modal-content">
     <div class="form-group" style="overflow: hidden">
       <div style="width: 500px;float: left;">
         <input class="form-control" id="followInput" type="text" value=""
@@ -10,31 +10,35 @@
       <div style="float: right;">
         <button class="btn btn-primary">Follow</button>
       </div>
-      <div>Error</div>
+      <div *ngIf="errorMessage">{{errorMessage}}</div>
     </div>
 
-    <div *ngFor="let l of list" style="padding:10px 0 10px 10px; border-bottom: 1px solid gray;overflow: hidden">
+    <div *ngFor="let f of follow_list" style="padding:10px 0 10px 10px; border-bottom: 1px solid gray;overflow: hidden">
       <div style="float: left;">
-        <img src="#" style="width: 45px;height: 45px;" (mouseover)="showProfile($event)">
+        <img src="{{authenticationService.getStatic()+f.head_image}}" style="width: 45px;height: 45px;"
+             (mouseover)="showPopinfo($event, f.id)">
       </div>
 
       <div style="float: left;">
         <div style="margin-left: 10px;">
-          <a href="#" style="margin: 0;font-weight: 900;font-size: larger">username</a>
-          <p style="margin: 0">Latest update time</p>
+          <a href="#" style="margin: 0;font-weight: 900;font-size: larger">{{f.username}}</a>
+          <p style="margin: 0">{{f.latest_pub_date}}</p>
         </div>
 
       </div>
 
       <div style="float: right;">
-        <a href="#" class="btn btn-default">Unfollow</a>
+        <a class="btn btn-default" (click)="follow($event,f)" style="width: 90px;">Unfollow</a>
       </div>
     </div>
 
 
   </div>
 
-  <div style="width: 300px; margin: 20px;float: right">
+  <div style="width: 300px; margin: 10px;float: right">
     <recommend></recommend>
   </div>
 </div>
+
+
+<div #popinfo id="popinfo"></div>

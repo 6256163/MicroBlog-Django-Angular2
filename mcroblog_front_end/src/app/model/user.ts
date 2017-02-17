@@ -35,6 +35,11 @@ export class UserExtendWithBlog {
 
 export class Follow {
   follower: string; //this should be string
+  username:string;
+  latest_pub_date:string;
+  id:number; // this is id user_extend
+  follow_id:number; // this is id of follow obj
+  head_image:string
 }
 
 export class Like {

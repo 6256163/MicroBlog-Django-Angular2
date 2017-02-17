@@ -13,15 +13,15 @@ export class FollowService {
               private authenticationService: AuthenticationService,) {
   }
 
-  follow_url = this.authenticationService.getApi()+'follow/'
+  follow_url = this.authenticationService.getApi() + 'follow/'
 
   getFollowUrl() {
     return this.follow_url;
   }
 
-  createFollow(follow):Observable<any>  {
+  createFollow(follow): Observable<any> {
     let follow_data = new Follow()
-    follow_data.follower=follow.id
+    follow_data.follower = follow.id
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers, withCredentials: true});
     return this.http.post(this.getFollowUrl(), JSON.stringify(follow_data), options)
@@ -29,11 +29,25 @@ export class FollowService {
       .catch(this.handleError);
   }
 
+  destroyFollow(user_id): Observable<any> {
+    let url = this.getFollowUrl()+user_id+'/'
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.delete(url, options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getFollow(): Observable<any> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers, withCredentials: true});
+    return this.http.get(this.getFollowUrl(), options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
-    let body = {'results': [], 'next': ''};
-    body.results = res.json().results;
-    body.next = res.json().next
-    return body;
+    return res.json();
   }
 
   private handleError(error: Response | any) {

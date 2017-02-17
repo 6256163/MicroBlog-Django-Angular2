@@ -17,7 +17,9 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 from blog.views import BlogViewSet
-from users.views import UserViewSet, LoginView, UserExtendViewSet, FollowViewSet, LikeViewSet
+from social.views import FollowViewSet
+from social.views import LikeViewSet
+from users.views import UserViewSet, LoginView, UserExtendViewSet
 from users import views
 from file import views as f_views
 router = routers.DefaultRouter()

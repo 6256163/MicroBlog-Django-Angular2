@@ -1,7 +1,7 @@
-from django.contrib.auth.models import User
+from rest_framework import serializers
 
 from models import Blog
-from rest_framework import serializers
+
 
 class BlogSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')

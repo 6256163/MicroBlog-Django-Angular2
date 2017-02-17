@@ -10,7 +10,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from models import Blog
 from serializers import BlogSerializer
-from users.models import Follow
+from social.models import Follow
 
 
 class BlogViewSet(viewsets.ModelViewSet):

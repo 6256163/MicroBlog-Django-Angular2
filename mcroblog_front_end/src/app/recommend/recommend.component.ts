@@ -20,15 +20,15 @@ import {forEach} from "@angular/router/src/utils/collection";
       transition('void => *', [
         animate(300, keyframes([
           style({opacity: 0, transform: 'translateX(-100%)', offset: 0}),
-          style({opacity: 1, transform: 'translateX(15px)',  offset: 0.3}),
-          style({opacity: 1, transform: 'translateX(0)',     offset: 1.0})
+          style({opacity: 1, transform: 'translateX(15px)', offset: 0.3}),
+          style({opacity: 1, transform: 'translateX(0)', offset: 1.0})
         ]))
       ]),
       transition('* => void', [
         animate(300, keyframes([
-          style({opacity: 1, transform: 'translateX(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateX(0)', offset: 0}),
           style({opacity: 1, transform: 'translateX(-15px)', offset: 0.7}),
-          style({opacity: 0, transform: 'translateX(100%)',  offset: 1.0})
+          style({opacity: 0, transform: 'translateX(100%)', offset: 1.0})
         ]))
       ])
     ])
@@ -54,7 +54,8 @@ export class RecommendComponent implements OnChanges {
         body => {
           for (let u of this.users) {
             if (u.id == follower.id) {
-              this.users.splice(this.users.indexOf(u), 1)
+              this.users.splice(this.users.indexOf(u), 1);
+              this.authenticationService.user_extend.follow_count += 1;
             }
           }
         },

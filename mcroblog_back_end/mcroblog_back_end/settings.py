@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users',
     'corsheaders',
     'file',
+    'social',
 ]
 
 REST_FRAMEWORK = {
