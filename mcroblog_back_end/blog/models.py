@@ -10,6 +10,7 @@ class Blog(models.Model):
     content = models.TextField(null=False, blank=False,)
     tags = models.TextField(null=True, blank=True,)
     pub_date = models.DateTimeField(auto_now_add=True)
+    note = models.PositiveIntegerField(default=0)
     class Meta:
         ordering = ('pub_date',)
 

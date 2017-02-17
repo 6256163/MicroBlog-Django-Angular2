@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild, ViewContainerRef} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../service/http/authentication.service";
 /**
@@ -6,7 +6,8 @@ import {AuthenticationService} from "../service/http/authentication.service";
  */
 @Component({
   selector: 'login-form',
-  templateUrl: './login-form.component.html'
+  templateUrl: './login-form.component.html',
+  styleUrls:['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit{
   model = {
@@ -52,5 +53,19 @@ export class LoginFormComponent implements OnInit{
         });
   }
 
+
+  @ViewChild('audio', {read: ViewContainerRef})
+  private audio_media: any;
+
+  switchOnOFF(event){
+    if (event.currentTarget.className == 'rotation'){
+      $(event.currentTarget).removeClass('rotation')
+      this.audio_media.element.nativeElement.pause()
+    }
+    else {
+      $(event.currentTarget).addClass('rotation')
+      this.audio_media.element.nativeElement.play()
+    }
+  }
 
 }

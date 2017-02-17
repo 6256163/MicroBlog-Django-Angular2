@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import {AuthenticationService} from "../service/http/authentication.service";
 import {Router} from "@angular/router";
 import {NavbarComponent} from "../navbar/navbar.component";
+import {UserService} from "../service/http/user.service";
 
 
 @Component({
@@ -17,6 +18,7 @@ import {NavbarComponent} from "../navbar/navbar.component";
 export class AccountComponent {
 
   constructor(private authenticationService: AuthenticationService,
+              private userService: UserService,
               private router: Router,
               private nav: NavbarComponent) {
   }

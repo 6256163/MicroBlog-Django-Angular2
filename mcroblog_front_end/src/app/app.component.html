@@ -1,5 +1,11 @@
+<body [ngStyle]="{'background-image': 'url(' + authenticationService.getStatic() + authenticationService.getBgImg() + ')'}"
+[style.height]="getHeight()">
 <user-blog *ngIf="userService.show_user_blog"></user-blog>
 
 <nav-bar></nav-bar>
 <router-outlet></router-outlet>
 
+
+
+
+</body>

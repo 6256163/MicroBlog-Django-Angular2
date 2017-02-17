@@ -14,21 +14,6 @@ export class User {
 
 
 export class UserExtend {
-  user: {
-    id: number;
-    username: string;
-    head_image: string;
-    background_image: string;
-    background_color: string;
-    u_title: string;
-    profile: string;
-    url: string
-  };
-
-  blogs: Blog[];
-}
-
-export class UserExtendForList{
   id: number;
   username: string;
   head_image: string;
@@ -36,10 +21,23 @@ export class UserExtendForList{
   background_color: string;
   u_title: string;
   profile: string;
-  url: string
+  url: string;
+  like_count: number;
+  follow_count: number;
+}
+
+export class UserExtendWithBlog {
+  user: UserExtend;
+
+  blogs: Blog[];
 }
 
 
 export class Follow {
-  follower: string //this should be string
+  follower: string; //this should be string
+}
+
+export class Like {
+  user:string;
+  blog: string; //this should be string
 }

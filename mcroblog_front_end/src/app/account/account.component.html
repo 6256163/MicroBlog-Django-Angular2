@@ -23,7 +23,7 @@
         <a routerLink="/likes" routerLinkActive="active">
           <span style="">likes</span>
         </a>
-          <span style="float: right">99</span>
+          <span style="float: right">{{authenticationService.user_extend.like_count}}</span>
 
       </li>
       <li class="panel-body" style="list-style-type: none;padding: 5px 15px;border-bottom: 1px solid gray">
@@ -31,7 +31,7 @@
         <a routerLink="/follow" routerLinkActive="active">
           <span style="">Follow</span>
         </a>
-        <span style="float: right">99</span>
+        <span style="float: right">{{authenticationService.user_extend.follow_count}}</span>
 
       </li>
       <li class="panel-body" style="list-style-type: none;padding: 5px 15px;border-bottom: 1px solid gray">

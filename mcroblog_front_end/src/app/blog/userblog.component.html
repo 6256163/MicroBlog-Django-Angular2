@@ -1,17 +1,21 @@
-<div  (click)="userService.hide_blog()"
+<div (click)="userService.hide_blog()"
      style="position:fixed;background: rgba(48,48,48,0.8);
-      top: 0;width: 100%; height: 100%; z-index: 10000"></div>
+      top: 0;width: 100%; height: 100%; z-index: 10000">
 
-<div [style.background-color]="userService.user_extend.background_color"
+</div>
+
+<div [style.background-color]="userService.user_extend.user.background_color"
      style="position:absolute;width: 600px; height: 100%; overflow: auto;right: 0; z-index: 10001">
   <div style="width:100%;margin: 0 -30px;color: black; text-align: center">
-    <img src="{{authenticationService.getStatic()+userService.user_extend.background_image}}"
-         style="width: 100%; height: auto; margin-left: 30px">
-    <img src="{{authenticationService.getStatic()+userService.user_extend.head_image}}" style="width: 100px;height: 100px;
+    <div id="pppp" style="width: 100%;height: 211px;margin-left: 30px; background-size: contain"
+         [ngStyle]="{'background-image': 'url(' + authenticationService.getStatic()+userService.user_extend.user.background_image + ')' }">
+
+    </div>
+    <img src="{{authenticationService.getStatic()+userService.user_extend.user.head_image}}" style="width: 100px;height: 100px;
          border: 3px solid white;border-radius: 5px;margin: -80px 0 0 -20px;position: absolute">
     <div style="margin-left: 60px">
-      <h1><b>{{userService.user_extend.u_title}}</b></h1>
-      <span>{{userService.user_extend.profile}}</span>
+      <h1><b>{{userService.user_extend.user.u_title}}</b></h1>
+      <span>{{userService.user_extend.user.profile}}</span>
     </div>
   </div>
   <blogs-list *ngIf="userService.show_user_blog" [with_head_image]="false" style="padding: 30px"></blogs-list>

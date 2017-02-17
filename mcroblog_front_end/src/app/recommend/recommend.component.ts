@@ -8,7 +8,7 @@ import {
 import {PopinfoService} from "../popinfo/popinfo.service";
 import {PopinfoComponent} from "../popinfo/popinfo.component";
 import {UserService} from "../service/http/user.service";
-import {UserExtend, User, UserExtendForList} from "../model/user";
+import {UserExtend,} from "../model/user";
 import {AuthenticationService} from "../service/http/authentication.service";
 import {FollowService} from "../service/http/follow.service";
 import {forEach} from "@angular/router/src/utils/collection";
@@ -36,7 +36,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 export class RecommendComponent implements OnChanges {
 
-  users: UserExtendForList[];
+  users: UserExtend[];
   next: any;
 
   constructor(private popinfoService: PopinfoService,

@@ -1,4 +1,4 @@
-<div style="width: 300px; height: auto; margin: 0 auto;
+<div style="width: 300px;margin: 0 auto; height: auto;
   background-color: white; padding: 30px; border-radius: 5px; text-align: center">
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm" >
     <md-input placeholder="username" [(ngModel)]="model.username" name="username"
@@ -12,5 +12,16 @@
     <div style="text-align: center">
       <button type="submit" class="btn btn-primary btn-xs" style="">Login</button>
     </div>
+
+    <div>
+      <div style="float: right;"class="rotation" #music_icon (click)="switchOnOFF($event)" >
+        <img src="{{authenticationService.getStatic()+'web_icon/music.png'}}" style="width: 20px;height: 20px">
+      </div>
+    </div>
   </form>
 </div>
+
+<audio #audio controls="controls" type="audio/ogg" src="{{authenticationService.getStatic()+authenticationService.getBgMusic()}}"
+       autoplay  loop style="display: none">
+</audio>
+

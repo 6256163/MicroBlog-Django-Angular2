@@ -22,7 +22,15 @@
         </div>
       </div>
       <div style="overflow:hidden; padding:10px 0">
-        <p style="float: right">{{b.pub_date}}</p>
+        <div style="float: left">
+          <span>{{b.note}}</span>&nbsp;Notes
+        </div>
+        <div class="icon-container" style="float: right">
+          <md-icon style="margin: 0 10px" title="share">send</md-icon>
+          <md-icon style="margin: 0 10px" title="reply">chat_bubble_outline</md-icon>
+          <md-icon style="margin: 0 10px" title="reblog">repeat</md-icon>
+          <md-icon style="margin: 0 10px" [style.color]="islike(b.id)?'red':''" (click)="like(b, $event)">{{islike(b.id)?'favorite':'favorite_border'}}</md-icon>
+        </div>
       </div>
     </div>
   </div>

@@ -2,17 +2,14 @@
 from copy import copy
 
 from django.db.models import Q
+from django import http
+from rest_framework import permissions
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-from rest_framework import permissions
 from models import Blog
 from serializers import BlogSerializer
-
-
-# Create your views here.
 from users.models import Follow
 
 

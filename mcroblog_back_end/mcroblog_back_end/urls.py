@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 from blog.views import BlogViewSet
-from users.views import UserViewSet, LoginView, UserExtendViewSet, FollowViewSet
+from users.views import UserViewSet, LoginView, UserExtendViewSet, FollowViewSet, LikeViewSet
 from users import views
 from file import views as f_views
 router = routers.DefaultRouter()
@@ -25,6 +25,8 @@ router.register(r'blog', BlogViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'u', UserExtendViewSet)
 router.register(r'follow', FollowViewSet)
+router.register(r'like', LikeViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

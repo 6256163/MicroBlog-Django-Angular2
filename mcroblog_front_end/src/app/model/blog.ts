@@ -11,4 +11,5 @@ export class Blog{
   tags:string;
   url:string;
   head_image:string;
+  note:number;
 }

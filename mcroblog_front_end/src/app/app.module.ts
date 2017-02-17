@@ -32,11 +32,11 @@ import {ContenteditableModelDirective} from "./Directive/ContenteditableModel.di
 import {RichTextComponent} from "./post/richtext/richtext.component";
 import {CameraComponent} from "./post/camera/camera.component";
 import {DecodeService} from "./service/decode/decode.service";
-import {SelfinfoComponent} from "./popinfo/selfinfo.component";
 import {UserBlogComponent} from "./blog/userblog.component";
 import {FollowService} from "./service/http/follow.service";
 import {RegisterFormComponent} from "./register/register-form.component";
 import {EqualValidator} from "./register/forbiden-validator.directive";
+import {LikeService} from "./service/http/like.service";
 
 export function getXSRF() {
   return new CookieXSRFStrategy('csrftoken', 'X-CSRFToken');
@@ -55,7 +55,6 @@ export function getXSRF() {
     AccountComponent,
     FollowComponent,
     PopinfoComponent,
-    SelfinfoComponent,
     PostComponent,
     LikesComponent,
     HomeComponent,
@@ -84,7 +83,6 @@ export function getXSRF() {
   //declare dynamical component in entryComponents
   entryComponents: [
     PopinfoComponent,
-    SelfinfoComponent,
   ],
   providers: [
     PopinfoService,
@@ -95,7 +93,7 @@ export function getXSRF() {
     DecodeService,
     FollowService,
     NavbarComponent,
-    BlogComponent,
+    LikeService,
     {
       provide: XSRFStrategy,
       useFactory: getXSRF,

@@ -9,6 +9,6 @@ class BlogSerializer(serializers.HyperlinkedModelSerializer):
     head_image = serializers.ReadOnlyField(source='user.userextend.head_image.name')
     class Meta:
         model = Blog
-        fields = ('url', 'id', 'title', 'content', 'tags', 'pub_date', 'user', 'user_id', 'head_image',)
+        fields = ('url', 'id', 'title', 'content', 'tags', 'pub_date', 'user', 'user_id', 'head_image','note')
 
 

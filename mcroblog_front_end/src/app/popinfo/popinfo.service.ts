@@ -8,6 +8,8 @@ import 'rxjs/add/operator/toPromise'
 import {UserService} from "../service/http/user.service";
 import {BlogComponent} from "../blog/blogs.component";
 import {BlogService} from "../service/http/blog.service";
+import {Blog} from "../model/blog";
+import {UserExtendWithBlog} from "../model/user";
 @Injectable()
 export class PopinfoService {
   public ref: any;
@@ -17,12 +19,13 @@ export class PopinfoService {
               private blogService: BlogService,) {
   }
 
+  user_extend = new UserExtendWithBlog();
 
   loadCom(viewChild, dynamic_com, $targer, user_id) {
     this.userService.getById(user_id)
       .then(data => {
-        this.userService.user_extend.user = data.user;
-        this.userService.user_extend.blogs = this.blogService.decodeBlogs(data.blogs);
+        this.userService.user_extend_with_blog.user = data.user;
+        this.userService.user_extend_with_blog.blogs = this.blogService.decodeBlogs(data.blogs);
         this.createCom(viewChild, dynamic_com, $targer)
       })
   }

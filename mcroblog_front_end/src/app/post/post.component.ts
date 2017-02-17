@@ -3,9 +3,9 @@ import {Blog} from "../model/blog";
 import {BlogService} from "../service/http/blog.service";
 import {FileUploadService} from "../service/http/file.upload.service";
 import {AuthenticationService} from "../service/http/authentication.service";
-import {SelfinfoComponent} from "../popinfo/selfinfo.component";
 import {PopinfoService} from "../popinfo/popinfo.service";
 import {UserService} from "../service/http/user.service";
+import {PopinfoComponent} from "../popinfo/popinfo.component";
 /**
  * Created by tianzhang on 2016/12/30.
  */
@@ -45,7 +45,7 @@ export class PostComponent {
 
 
   showPopinfo(eventTarget, user_id) {
-    this.popinfoService.loadCom(this.selfinfo, SelfinfoComponent, $(eventTarget.currentTarget),user_id)
+    this.popinfoService.loadCom(this.selfinfo, PopinfoComponent, $(eventTarget.currentTarget),user_id)
 
   }
 

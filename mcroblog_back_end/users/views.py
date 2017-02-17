@@ -1,12 +1,11 @@
+import json
 import random
+import re
 from copy import copy
 
-import re
-import json
 from django import http
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.core import serializers
 from django.db.models import Q
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import permissions
@@ -14,15 +13,16 @@ from rest_framework import status
 from rest_framework import views
 from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import permission_classes, list_route
+from rest_framework.decorators import permission_classes
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
 from blog.models import Blog
 from blog.serializers import BlogSerializer
-from users.models import UserExtend, Follow
-from users.serializers import UserSerializer, UserExtendSerializer, FollowSerializer
+from users.models import UserExtend, Follow, Like
+from users.serializers import UserSerializer, UserExtendSerializer, FollowSerializer, LikeSerializer
+
 
 class SmallResultsSetPagination(PageNumberPagination):
     page_size = 5
@@ -90,7 +90,7 @@ class FollowViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Follow.objects.all().order_by('create_date')
+    queryset = Follow.objects.all().order_by('-create_date')
     serializer_class = FollowSerializer
     authentication_classes = (SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
@@ -113,6 +113,38 @@ class FollowViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         else:
             return http.HttpResponseNotFound()
+
+
+class LikeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Like.objects.all().order_by('-create_date')
+    serializer_class = LikeSerializer
+    authentication_classes = (SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        user_serializer = UserSerializer(request.user, context={'request': request}).data
+        blog_serializer = BlogSerializer(Blog.objects.get(pk=request.data['blog']),
+                                                      context={'request': request}).data
+        data = copy(request.data)
+        data['user'] = user_serializer['url']
+        data['blog'] = blog_serializer['url']
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def destroy(self, request, *args, **kwargs):
+        id = request.resolver_match.kwargs['pk']
+        instance = Like.objects.filter(user = request.user, blog = id)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class LoginView(views.APIView):
@@ -139,9 +171,14 @@ def logout(request):
 @ensure_csrf_cookie  # set the csrf always
 def isLogin(request):
     if request.user.is_authenticated():
+        likes = list()
+        for like in Like.objects.filter(user=request.user):
+            likes.append(like.blog.id)
         return http.JsonResponse({'user': UserSerializer(request.user, context={'request': request}).data,
                                   'user_extend': UserExtendSerializer(request.user.userextend,
-                                                                      context={'request': request}).data})
+                                                                      context={'request': request}).data,
+                                  'like':likes,
+                                  })
     else:
         return http.HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
 
@@ -163,7 +200,7 @@ def register(request):
                     re.match(re_email, data.get('email'))
                 ):
                 user = User.objects.create_user(**data)
-                bg = random.sample(['white', 'pink', '#90abff', 'yellow'], 1)[0]
+                bg = random.sample(['#BEFF76', 'pink', '#90abff', 'yellow'], 1)[0]
                 user_extend = UserExtend.objects.create(user=user, background_color=bg)
                 return http.HttpResponse(status=status.HTTP_201_CREATED)
             else:

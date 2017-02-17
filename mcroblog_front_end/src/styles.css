@@ -106,3 +106,12 @@ input:-webkit-autofill {
   background: url(assets/posts_sprite.png) -50px 0 no-repeat;
   cursor: pointer;
 }
+
+md-icon{
+  cursor: pointer;
+  user-select: none;
+}
+
+.icon-container{
+  user-select: none;
+}

@@ -32,4 +32,11 @@ export class AppComponent implements OnInit {
           this.router.navigate(['login']);
         });
   }
+
+  getHeight() {
+    let body = document.body;
+    let html = document.documentElement;
+    return Math.max( body.scrollHeight, body.offsetHeight,
+      html.clientHeight, html.scrollHeight, html.offsetHeight ) +'px';
+  }
 }

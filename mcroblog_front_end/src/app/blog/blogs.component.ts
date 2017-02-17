@@ -13,6 +13,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {DecodeService} from "../service/decode/decode.service";
 import {AuthenticationService} from "../service/http/authentication.service";
 import {UserService} from "../service/http/user.service";
+import {LikeService} from "../service/http/like.service";
 @Component({
   selector: 'blogs-list',
   templateUrl: './blogs.component.html',
@@ -29,7 +30,8 @@ export class BlogComponent implements OnInit {
   constructor(private blogService: BlogService,
               private popinfoService: PopinfoService,
               private authenticationService: AuthenticationService,
-              private userService: UserService,) {
+              private userService: UserService,
+              private likeService: LikeService,) {
 
   }
 
@@ -57,6 +59,50 @@ export class BlogComponent implements OnInit {
 
   showPopinfo(eventTarget, user_id) {
     this.popinfoService.loadCom(this.popinfo, PopinfoComponent, $(eventTarget.currentTarget), user_id)
+
+  }
+
+  islike(blog_id) {
+    if (this.authenticationService.likes.indexOf(blog_id) > -1) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
+  like(blog, event) {
+    let target = event.currentTarget
+    if (event.currentTarget.innerHTML == 'favorite') {
+      this.likeService.distroy(blog.id)
+        .subscribe(
+          body => {
+            this.authenticationService.likes.splice(this.authenticationService.likes.indexOf(blog.id), 1)
+            this.authenticationService.user_extend.like_count -= 1;
+            blog.note -= 1;
+            target.innerHTML = 'favorite_border';
+            target.style.color = '';
+            target.title = 'like'
+          },
+          error => this.errorMessage = <any>error
+        )
+
+    }
+    else {
+      this.likeService.createlike(blog.id)
+        .subscribe(
+          body => {
+            this.authenticationService.likes.push[blog.id]
+            this.authenticationService.user_extend.like_count += 1;
+            blog.note += 1;
+            target.innerHTML = 'favorite';
+            target.style.color = 'red';
+            target.title = 'dislike'
+          },
+          error => this.errorMessage = <any>error
+        )
+
+    }
 
   }
 
