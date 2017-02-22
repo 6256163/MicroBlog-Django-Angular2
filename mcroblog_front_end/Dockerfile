@@ -1,0 +1,2 @@
+FROM nginx:1.10.3
+EXPOSE 8000 

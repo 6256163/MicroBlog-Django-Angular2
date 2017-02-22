@@ -1,0 +1,35 @@
+version: '2'  
+services:  
+  nginx:
+    image: nginx:1.10.3
+    container_name: ng01
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mcroblog_front_end/nginx-config/sites-enabled:/etc/nginx/sites-enabled
+      - ./mcroblog_front_end/nginx-config/www.catchcat.cat:/etc/letsencrypt/live/www.catchcat.top
+      - ./mcroblog_front_end/dist:/user/src/app/mcroblog_front_end/dist
+      - ./mcroblog_back_end/logs:/user/src/app/mcroblog_back_end/logs
+      - ./mcroblog_back_end/media:/user/src/app/mcroblog_back_end/media
+   depends_on:
+      - web
+
+  web:
+    build: ./mcroblog_back_end/Dockerfile
+    container_name: dg01
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn_start.sh"
+    depends_on:
+      - db
+    expose:
+      - "8000"
+
+  db:
+    image: mysql:5.7.17
+    container_name: sql01
+    volumes:
+      - ./mysql_database/mcroblog:/var/lib/mysql/mcroblog
+    command : bash -c "service mysql start"
+    environment:
+      - MYSQL_DATABASE=mcroblog
+      - MYSQL_ROOT_PASSWORD=root  
+
