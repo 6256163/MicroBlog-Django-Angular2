@@ -31,4 +31,4 @@ services:
       - ./mysql_database/mcroblog:/var/lib/mysql/mcroblog
     environment:
       - MYSQL_ROOT_PASSWORD=root  
-
+      - MYSQL_DATABASE=mcroblog
