@@ -19,6 +19,8 @@ services:
     build: ./mcroblog_back_end
     container_name: dg01
     command: bash -c "python manage.py makemigrations && python manage.py migrate && bash gunicorn_start.sh"
+    volumes:
+      - ./mcroblog_back_end/media:/usr/src/app/mcroblog_back_end/media
     depends_on:
       - db
     expose:
