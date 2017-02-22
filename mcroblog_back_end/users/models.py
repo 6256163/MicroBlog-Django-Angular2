@@ -14,6 +14,6 @@ class UserExtend(models.Model):
     profile = models.CharField(max_length=225, blank=True)
     like_count = models.IntegerField(default=0)
     follow_count = models.IntegerField(default=0)
-    latest_pub_date = models.DateTimeField(blank=True)
+    latest_pub_date = models.DateTimeField(blank=True, null=True)
 
 
