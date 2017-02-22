@@ -4,7 +4,7 @@
       <span style="float:left;">username</span>
       <span style="float:right;">Setting</span>
     </div>
-    <div
+    <div *ngIf="!display_camera"
       style="margin:0 auto;padding: 10px 20px 10px 20px; overflow: hidden;
       border-bottom: 2px dashed rgba(132,132,132,0.2); border-top: 2px dashed rgba(132,132,132,0.2);">
       <div *ngIf="display_upload">
@@ -18,7 +18,10 @@
           </a>
 
           <p>Upload Photos</p>
-          <md-icon (click)="shwoCamera()" style="margin: 0 auto; cursor: pointer">tag_faces</md-icon>
+          <div>
+            <md-icon (click)="shwoCamera()" style="margin: 0 auto; cursor: pointer">tag_faces</md-icon>
+            <span>Take a selfie</span>
+          </div>
         </div>
 
         <div [@flyInOut]="photoPost"

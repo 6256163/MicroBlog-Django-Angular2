@@ -132,13 +132,17 @@ export class RichTextComponent implements OnInit {
 
   errorMessage: any;
 
-  processUploadImg(event) {
-    this.fileService.uploadFile(event.srcElement.files)
+  processUploadImg(event, files) {
+    this.fileService.uploadFile(files)
       .subscribe(
         body => {
+          if (!this.target) {
+            this.target = $(document.getElementById('content'))
+          }
           if (this.target.attr('id') == 'content') {
             this.target = $('<div></div>').appendTo(this.target)
           }
+
           this.target
             .css({
               'position': 'relative',
@@ -190,7 +194,7 @@ export class RichTextComponent implements OnInit {
 
   insert_video() {
     let url = $('#video_url').text();
-    if ($(url).length==1 && $(url)[0].nodeName == "EMBED") {
+    if ($(url).length == 1 && $(url)[0].nodeName == "EMBED") {
       if (this.target.attr('id') == 'content') {
         this.target = $('<div></div>').appendTo(this.target)
       }
@@ -203,7 +207,7 @@ export class RichTextComponent implements OnInit {
         .prepend(
           $(url)
             .css({
-              'width':'100%'
+              'width': '100%'
             })
         )
         .append(

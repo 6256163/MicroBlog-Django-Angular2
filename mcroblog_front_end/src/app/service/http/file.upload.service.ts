@@ -26,7 +26,7 @@ export class FileUploadService {
         xhr: XMLHttpRequest = new XMLHttpRequest();
 
       for (let i = 0; i < files.length; i++) {
-        formData.append("files[]", files[i], files[i].name);
+        formData.append("files[]", files[i], files[i].name? files[i].name: 'temp_name.png');
       }
 
       xhr.onreadystatechange = () => {

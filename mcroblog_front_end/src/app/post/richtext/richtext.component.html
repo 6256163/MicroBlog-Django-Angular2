@@ -14,7 +14,7 @@
     <a>
       <md-icon (click)="uploadImg($event,'#uploadImage')">image</md-icon>
       <input id='uploadImage' type="file" accept="image/*" multiple style="display: none;"
-             (change)="processUploadImg($event)"/>
+             (change)="processUploadImg($event,$event.srcElement.files)"/>
     </a>
     <a>
       <md-icon (click)="show_insert_video($event)">videocam</md-icon>
