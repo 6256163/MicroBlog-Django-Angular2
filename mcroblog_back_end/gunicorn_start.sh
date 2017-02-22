@@ -1,8 +1,8 @@
 #!/bin/bash
 
 NAME="mcorblog_back_end"                                  # Name of the application
-DJANGODIR=./mcroblog_back_end  # Django project directory
-SOCKFILE=./mcroblog_back_end/gunicorn_run/gunicorn.sock  # we will communicte using this unix socket
+DJANGODIR=mcroblog_back_end  # Django project directory
+SOCKFILE=gunicorn_run/gunicorn.sock  # we will communicte using this unix socket
 USER=root                                        # the user to run as
 GROUP=root                                     # the group to run as
 NUM_WORKERS=3                                     # how many worker processes should Gunicorn spawn

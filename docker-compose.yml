@@ -15,7 +15,7 @@ services:
       - web
 
   web:
-    build: ./mcroblog_back_end/Dockerfile
+    build: ./mcroblog_back_end
     container_name: dg01
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn_start.sh"
     depends_on:
