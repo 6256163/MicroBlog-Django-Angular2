@@ -11,7 +11,7 @@ services:
       - ./mcroblog_front_end/dist:/user/src/app/mcroblog_front_end/dist
       - ./mcroblog_back_end/logs:/user/src/app/mcroblog_back_end/logs
       - ./mcroblog_back_end/media:/user/src/app/mcroblog_back_end/media
-   depends_on:
+    depends_on:
       - web
 
   web:
