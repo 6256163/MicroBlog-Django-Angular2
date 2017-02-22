@@ -31,8 +31,8 @@ services:
   db:
     image: mysql:5.7.17
     container_name: sql01
-#    volumes:
-#      - ./mysql_database/mcroblog:/var/lib/mysql/mcroblog
+    volumes:
+      - ./mysql_database/mcroblog:/var/lib/mysql/mcroblog
     environment:
       - MYSQL_ROOT_PASSWORD=root  
-      - MYSQL_DATABASE=mcroblog
+#      - MYSQL_DATABASE=mcroblog
