@@ -4,7 +4,7 @@ services:
     image: nginx:1.10.3
     container_name: ng01
     ports:
-      - "8000:8000"
+      - "80:80"
     volumes:
       - ./mcroblog_front_end/nginx/conf.d:/etc/nginx/conf.d
       - ./mcroblog_front_end/nginx/www.catchcat.cat:/etc/letsencrypt/live/www.catchcat.top
