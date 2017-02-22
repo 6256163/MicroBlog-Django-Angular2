@@ -21,6 +21,8 @@ services:
     command: bash -c "python manage.py makemigrations && python manage.py migrate && bash gunicorn_start.sh"
     volumes:
       - ./mcroblog_back_end/media:/usr/src/app/mcroblog_back_end/media
+    links:
+      - "db:db"
     depends_on:
       - db
     expose:
