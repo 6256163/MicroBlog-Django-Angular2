@@ -1,8 +1,8 @@
 #!/bin/bash
 
 NAME="mcorblog_back_end"                                  # Name of the application
-DJANGODIR=mcroblog_back_end  # Django project directory
-SOCKFILE=gunicorn_run/gunicorn.sock  # we will communicte using this unix socket
+DJANGODIR=/usr/src/app/mcroblog_back_end  # Django project directory
+SOCKFILE=/usr/src/app/mcroblog_back_end/gunicorn_run/gunicorn.sock  # we will communicte using this unix socket
 USER=root                                        # the user to run as
 GROUP=root                                     # the group to run as
 NUM_WORKERS=3                                     # how many worker processes should Gunicorn spawn
@@ -13,7 +13,6 @@ echo "Starting $NAME as `whoami`"
 
 # Activate the virtual environment
 cd $DJANGODIR
-source venv/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
