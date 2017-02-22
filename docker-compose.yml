@@ -5,6 +5,7 @@ services:
     container_name: ng01
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./mcroblog_front_end/nginx/conf.d:/etc/nginx/conf.d
       - ./mcroblog_front_end/nginx/www.catchcat.cat:/etc/letsencrypt/live/www.catchcat.top
