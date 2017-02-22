@@ -6,11 +6,11 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./mcroblog_front_end/nginx-config/sites-enabled:/etc/nginx/sites-enabled
-      - ./mcroblog_front_end/nginx-config/www.catchcat.cat:/etc/letsencrypt/live/www.catchcat.top
-      - ./mcroblog_front_end/dist:/user/src/app/mcroblog_front_end/dist
-      - ./mcroblog_back_end/logs:/user/src/app/mcroblog_back_end/logs
-      - ./mcroblog_back_end/media:/user/src/app/mcroblog_back_end/media
+      - ./mcroblog_front_end/nginx/conf.d:/etc/nginx/conf.d
+      - ./mcroblog_front_end/nginx/www.catchcat.cat:/etc/letsencrypt/live/www.catchcat.top
+      - ./mcroblog_front_end/dist:/usr/src/app/mcroblog_front_end/dist
+      - ./mcroblog_back_end/logs:/usr/src/app/mcroblog_back_end/logs
+      - ./mcroblog_back_end/media:/usr/src/app/mcroblog_back_end/media
     depends_on:
       - web
 
