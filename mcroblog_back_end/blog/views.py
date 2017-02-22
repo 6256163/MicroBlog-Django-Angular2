@@ -8,8 +8,8 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
-from models import Blog
-from serializers import BlogSerializer
+from blog.models import Blog
+from blog.serializers import BlogSerializer
 from social.models import Follow
 
 

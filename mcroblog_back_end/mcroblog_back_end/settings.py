@@ -92,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mcroblog',
-        'USER': 'root',	
-	'HOST': 'db',
+        'USER': 'root',
+        'HOST': 'db',
         'PASSWORD': 'root',
     }
 }
