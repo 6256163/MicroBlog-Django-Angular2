@@ -28,7 +28,6 @@ services:
     container_name: sql01
     volumes:
       - ./mysql_database/mcroblog:/var/lib/mysql/mcroblog
-    command : bash -c "service mysql start"
     environment:
       - MYSQL_DATABASE=mcroblog
       - MYSQL_ROOT_PASSWORD=root  
