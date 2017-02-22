@@ -29,6 +29,5 @@ services:
     volumes:
       - ./mysql_database/mcroblog:/var/lib/mysql/mcroblog
     environment:
-      - MYSQL_DATABASE=mcroblog
       - MYSQL_ROOT_PASSWORD=root  
 
