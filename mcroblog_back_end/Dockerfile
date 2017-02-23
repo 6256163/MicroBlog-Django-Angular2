@@ -1,4 +1,4 @@
-FROM python:3-slim
+FROM python:2-slim
 ENV PYTHONUNBUFFERED 1
 EXPOSE 8000 
 COPY . /usr/src/app/mcroblog_back_end
