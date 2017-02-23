@@ -7,6 +7,8 @@ import {
 } from "@angular/core";
 import {RichTextComponent} from "../richtext/richtext.component";
 import {FileUploadService} from "../../service/http/file.upload.service";
+import {Blog} from "../../model/blog";
+import {BlogService} from "../../service/http/blog.service";
 @Component({
   selector: 'camera',
   templateUrl: './camera.component.html',
@@ -24,23 +26,19 @@ import {FileUploadService} from "../../service/http/file.upload.service";
 })
 export class CameraComponent implements AfterViewInit {
 
+  constructor(private fileService: FileUploadService,
+              private blogService: BlogService) {
+  }
+
   @Output()
   output: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  photo_uri: EventEmitter<string> = new EventEmitter<string>();
   localstream: any;
   photo_data: any;
+  errorMessage: any;
 
-  constructor(private fileService: FileUploadService) {
-  }
-
-  closeCamera() {
-    let _video: any = document.getElementById("camera");
-    <HTMLVideoElement>_video;
-    this.output.emit(false)
-    for (let track of this.localstream.getTracks()) {
-      track.stop()
-    }
-
-  }
 
   snapPhoto() {
     var snap = document.getElementById('snap');
@@ -77,6 +75,16 @@ export class CameraComponent implements AfterViewInit {
     $(publish).hide()
   }
 
+  closeCamera() {
+    let _video: any = document.getElementById("camera");
+    <HTMLVideoElement>_video;
+    this.output.emit(false)
+    for (let track of this.localstream.getTracks()) {
+      track.stop()
+    }
+
+  }
+
 
   @ViewChild(RichTextComponent)
   private richtext: RichTextComponent;
@@ -87,21 +95,23 @@ export class CameraComponent implements AfterViewInit {
     var canvas = <HTMLCanvasElement>document.getElementById('canvas');
     canvas.toBlob(function (blob) {
       file_list.push(blob);
-      uploadPhoto_this.richtext.processUploadImg(event, file_list);
-      /*
-       uploadPhoto_this.fileService.uploadFile(file_list)
-       .subscribe(
-       body=>{
-       this.richtext
-       },
-       error=>{}
-       )
-       */
+      uploadPhoto_this.fileService.uploadFile(file_list)
+        .subscribe(
+          body => {
+            uploadPhoto_this.photo_uri.emit(body)
+            var publish = document.getElementById('publish');
+            $(publish).hide()
+          },
+          error => {
+          }
+        )
+
 
     })
     //this.richtext.uploadImg(event, file_list)
 
   }
+
 
   ngAfterViewInit() {
 
