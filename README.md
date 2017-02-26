@@ -43,11 +43,11 @@
                 - [X] Text
                 - [X] Picture
                 - [X] Link Video
-            - [ ] 照片帖（Photo） 
+            - [X] 照片帖（Photo） 
                 - [X] Upload Photo
-                - [ ] Camera 
+                - [X] Camera 
                     - [X] Launch
-                    - [ ] Take pictures
+                    - [X] Take pictures
             - [ ] 外链帖（Link） 
             - [ ] 对话引用（Chat） 
             - [ ] 音频（Audio） 
